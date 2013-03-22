@@ -2,3 +2,8 @@
 //$('.quick').css({
 //  'height' : qw + 'px'
 //});
+
+
+function toggleRegistrationOptions() {
+	$('#inputUsername').focus();
+}

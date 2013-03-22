@@ -3,7 +3,6 @@
   <head>
     <?php include('requiredMETA.php'); ?>
     <?php include('requiredCSS.php'); ?>
-    <?php include('requiredJS.php'); ?>
   </head>
 
   <body>
@@ -26,5 +25,7 @@
       <!--Footer-->
       <?php include('footer.php'); ?>
     </div>
+    
+    <?php include('requiredJS.php'); ?>
   </body>
 </html> 
