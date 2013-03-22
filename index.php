@@ -1,46 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Kennel Master</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/favicon.png">
-
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-    <![endif]-->
+    <?php include('requiredMETA.php'); ?>
+    <?php include('requiredCSS.php'); ?>
   </head>
 
   <body>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">Kennel Master</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Dogs</a></li>
-              <li><a href="#">Lineage</a></li>
-            </ul>
+    <!--Navigation-->
+    <?php include('navigation.php'); ?>
+
+    <!--Content-->
+    <div class="container-fluid">
+
+      <!--Dashboard-->
+      <div class="row-fluid dashboard">
+        <!--Upcoming Alerts-->
+        <div class="span4">
+        <?php include('dashboard-alerts.php'); ?>
+        </div>
+        <div class="span8">
+          <!--Quick Actions-->
+          <h4>Quick Actions</h4>
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="row-fluid">
+                <div class="span6 quick">
+                  <button class="btn btn-block btn-success quick-link">add new dog</button>
+                </div>
+                <div class="span6 quick">
+                  <button class="btn btn-block btn-info quick-link">add new alert</button>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span6 quick">
+                  <button class="btn btn-block btn-primary quick-link">add new litter</button>
+                </div>
+                <div class="span6 quick">
+                  <button class="btn btn-block btn-warning quick-link">view pedigree</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <h1>Dogs:</h1>
-      <?php include('m_dogs.php'); ?>
 
-      <h1>Breeds:</h1>
-      <?php include('m_breeds.php'); ?>
+      <!--Footer-->
+      <?php include('footer.php'); ?>
     </div>
+    <?php include('requiredJS.php'); ?>
   </body>
 </html> 
