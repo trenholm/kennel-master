@@ -1,5 +1,12 @@
 <?php
 
-// TODO if not logged in, re-route the user to the sign-in screen (deny all access otherwise)
+$username = $_REQUEST["inputUsername"];
+$password = $_REQUEST["inputPassword"];
+$confirmPassword = $_REQUEST["inputConfirmPassword"];
+$email = $_REQUEST["inputEmail"];
+$creditCard = $_REQUEST["inputCreditCard"];
+$kennelName = $_REQUEST["inputKennelName"];
+$address = $_REQUEST["inputAddress"];
+$breeds = $_REQUEST["inputBreeds"];
 
 ?>

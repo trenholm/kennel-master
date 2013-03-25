@@ -1,5 +1,5 @@
 <h4>Upcoming Alerts</h4>
-<table class="table">
+<table class="table table-striped">
   <tr><td>Alert 1</td></tr>
   <tr><td>Alert 2</td></tr>
   <tr><td>Alert 3</td></tr>
