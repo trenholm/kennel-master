@@ -20,7 +20,7 @@
         </div>
         <!--Content-->
         <div class="span9">
-	<?php include('dog-list.php'); ?>
+	        <?php include('dog-list.php'); ?>
         </div>
       </div>
 

@@ -1,4 +1,6 @@
-// TODO use the document on ready function??
+/**
+ * Code to run when the document is first ready (initialized)
+ */
 $(document).ready(function() {
 	// Initially focus on the username field of the form by default
 	$('#inputUsername').focus();
@@ -20,6 +22,7 @@ function submitForm(e) {
  */
 function toggleRegistrationOptions() {
 
+	// TODO have a better way to check when you are registering vs signing in??
 	var form = $('#signInForm');
 
 	// if user wants to register a new account
@@ -29,15 +32,13 @@ function toggleRegistrationOptions() {
 	else {
 		resetForm();
 	}
-
-	console.log("Action", form.attr('action'));
 }
 
 /**
  * Function to display all the additional fields for registration
  */
 function expandForm() {
-	// change the form destination (register account)
+	// Change the form destination (register account)
 	$('#signInForm').attr('action', 'register.php');
 	$('#signInForm button[name="mainBtn"]').html('Register');
 
@@ -45,13 +46,13 @@ function expandForm() {
 //	$('#signInForm').prepend('<div id="requiredHeader" name="requiredHeader"><h4>Account Information (required)</h4></div>');
 //	$('#inputKennelNameField').prepend('<div id="optionalHeader" name="optionalHeader"><hr /><h4>Kennel Information (optional)</h4></div>');
 
-	// display additional fields (optional and required fields)
+	// Display additional fields (optional and required fields)
 	showAdditionalFields();
 
-	// hide the registration button
+	// Hide the registration button
 	$('#registerNowSection').hide()
 
-	// change the validation requirements?!
+	// Change the validation requirements?!
 	// TODO
 }
 
@@ -59,7 +60,7 @@ function expandForm() {
  * Function to reset all the fields of the form to blank (empty)
  */
 function resetForm() {
-	// change the form destination (sign-in account)
+	// Change the form destination (sign-in account)
 	$('#signInForm').attr('action', 'signin.php');
 	$('#signInForm button[name="mainBtn"]').html('Sign in');
 
@@ -67,22 +68,20 @@ function resetForm() {
 //	$('#requiredHeader').remove();
 //	$('#optionalHeader').remove();
 
-	// hide additional fields (optional and required fields)
+	// Hide additional fields (optional and required fields)
 	hideAdditionalFields();
 
-	// show the registration button
+	// Show the registration button
 	$('#registerNowSection').show()
 
-	// change the validation requirements?!
+	// Change the validation requirements?!
 	// TODO
 
-	// empty all the filled in form fields
+	// Empty all the filled in form fields
 	$('#signInForm')[0].reset();
 
-	// focus the form on the username field
+	// Focus the form on the username field
 	$('#inputUsername').focus();
-
-	console.log("Form reset");
 }
 
 /**
