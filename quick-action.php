@@ -14,13 +14,11 @@
 
       <!--Dashboard-->
       <div class="row-fluid">
-        <!--Quick Actions-->
-        <div class="span3" id="quick" name="quick">
+        <div class="span4">
           <?php include('quick-links.php'); ?>
         </div>
-        <!--Content-->
-        <div class="span9" id="content" name="content">
-	        <?php include('dog-list.php'); ?>
+        <div class="span8 pull-right">
+          <?php include('quick-action-dog.php'); ?>
         </div>
       </div>
 

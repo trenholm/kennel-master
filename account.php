@@ -13,12 +13,14 @@
     <div class="container-fluid">
 
       <!--Dashboard-->
-      <div class="row-fluid dashboard">
-        <div class="span4">
-          Upcoming Alerts
+      <div class="row-fluid">
+        <!--Quick Actions-->
+        <div class="span3">
+          <?php include('quick-links.php'); ?>
         </div>
-        <div class="span8">
-          Quick Actions
+        <!--Content-->
+        <div class="span9">
+          <?php include('account-details.php'); ?>
         </div>
       </div>
 

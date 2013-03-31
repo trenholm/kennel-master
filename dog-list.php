@@ -1,30 +1,38 @@
-<div class="container">
+<div class="container span12">
   <div class="row-fluid">
-    <div id="search-bar" name="search-bar">
-      <form class="form-search pull-right">
-        <div class="input-append">
-          <input type="text" class="search-query" placeholder="Search">
-          <button class="btn" type="button">Search</button>
-        </div>
+    <div id="search-bar" name="search-bar" class="span12">
+      <form class="form-search span12 input-append">
+        <input type="text" class="span11 data_field" name="search" id="search" placeholder="Search">
+        <button type="button" class="btn"><i class="icon-search"></i> Search</button>
       </form>
     </div>
   </div>
   <div class="row-fluid">
     <div id="result-list" name="result-list">
-      <table class="table table-striped table-bordered">
+      <table class="table table-striped">
         <thead>
           <tr>
+            <th>Registration</th>
             <th>Name</th>
+            <th>Callname</th>
             <th>Gender</th>
-            <th>Age</th>
-            <th>others...</th>
+            <th>Date of Birth</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td></tr>
+          <?php 
+            // Retrieve the list from the database and build the option list
+            include('db/getDogs.php');
+            
+            foreach ($dogs as $document) {
+                    echo '<tr><td>' . $document['registration']
+                     . '</td><td>' . $document['name'] 
+                     . '</td><td>' . $document['callname'] 
+                     . '</td><td>' . $document['gender'] 
+                     . '</td><td>' . $document['date_of_birth'] 
+                     . '</td></tr>';
+            }
+          ?>
         </tbody>
       </table>
     </div>
