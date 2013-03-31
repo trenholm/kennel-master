@@ -15,12 +15,12 @@
       <!--Dashboard-->
       <div class="row-fluid">
         <!--Quick Actions-->
-        <div class="span3" id="quick" name="quick">
+        <div class="span3">
           <?php include('quick-links.php'); ?>
         </div>
         <!--Content-->
-        <?php include('quick-action-dog.php'); ?>
-        <div class="span9" id="content" name="content">
+        <div class="span9">
+          <?php include('quick-action-dog.php'); ?>
 	        <?php include('dog-list.php'); ?>
         </div>
       </div>

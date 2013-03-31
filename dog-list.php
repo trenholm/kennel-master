@@ -1,11 +1,9 @@
-<div class="container span12">
-  <div class="row-fluid">
-    <div id="search-bar" name="search-bar" class="span12">
-      <form class="form-search span12 input-append">
-        <input type="text" class="span11 data_field" name="search" id="search" placeholder="Search">
-        <button type="button" class="btn"><i class="icon-search"></i> Search</button>
-      </form>
-    </div>
+<div class="row-fluid" id="content" name="content">
+  <div  class="row-fluid span12" id="search-bar" name="search-bar">
+    <form class="form-search span12 input-append">
+      <input type="text" class="span11 data_field" name="search" id="search" placeholder="Search">
+      <button type="button" class="btn"><i class="icon-search"></i> Search</button>
+    </form>
   </div>
   <div class="row-fluid">
     <div id="result-list" name="result-list">

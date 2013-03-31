@@ -11,7 +11,7 @@
     ?>
   <div class="navbar">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container-fluid">
         <a class="brand" href="#">Kennel Master</a>
       </div>
     </div>

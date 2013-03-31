@@ -1,4 +1,4 @@
-<div class="container span12">
+<div class="container-fluid span12">
   <div class="row-fluid">
     <form name="updateprofile" class="form-horizontal" action="db/updateProfile.php" method="post">
       <div class="control-group">
