@@ -9,9 +9,9 @@ $db = $m->kennelmaster;
 $collection = $db->dogs;
 
 // Find everything in the collection (for the logged-in user)
-$cursor = $collection->find();
+$cursor = $collection->find()->sort(array("name" => 1));
 
-// Store the results in an array (in session!)
+// Store the results in an array (in session!?)
 $dogs = $cursor;
 
 ?>

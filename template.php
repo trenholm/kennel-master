@@ -13,11 +13,11 @@
     <div class="container-fluid">
 
       <!--Dashboard-->
-      <div class="row-fluid dashboard">
-        <div class="span4">
+      <div class="row-fluid">
+        <div class="span4" id="quick" name="quick">
           Upcoming Alerts
         </div>
-        <div class="span8">
+        <div class="span8" id="content" name="content">
           Quick Actions
         </div>
       </div>

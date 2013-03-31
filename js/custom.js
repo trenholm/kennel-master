@@ -1,11 +1,18 @@
-//var qw = $('.quick').width();
-//$('.quick').css({
-//  'height' : qw + 'px'
-//});
+$(".chzn-select").chosen();
 
 
-function toggleRegistrationOptions() {
-	$('#inputUsername').focus();
+/**
+ * Function to 
+ */
+function showDogPanel() {
+	$("#addDogPanel").slideDown();
+	$("#content").slideUp();
 }
 
-$(".chzn-select").chosen();
+/**
+ * Function to 
+ */
+function hideDogPanel() {
+	$("#addDogPanel").slideUp();
+	$("#content").slideDown();
+}

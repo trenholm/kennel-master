@@ -1,7 +1,10 @@
 <?php
 
-$username = $_REQUEST["inputUsername"];
-$password = $_REQUEST["inputPassword"];
+$username = $_REQUEST['inputUsername'];
+$password = $_REQUEST['inputPassword'];
+
+$errorMsg = "";
+$numRows = "";
 
 // TODO check if user is in database
 // check if password matches

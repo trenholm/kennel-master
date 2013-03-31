@@ -76,16 +76,16 @@
           <div class="control-group" id="inputBreedsField" name="inputBreedsField" style="display: none;">
             <label class="control-label" for="inputBreeds">Breeds</label>
             <div class="controls">
-              <select class="chzn-select chz-default" multiple type="text" id="inputBreeds" name="inputBreeds" data-placeholder="Choose Breeds">
+              <select class="chzn-select chz-default" multiple="multiple" type="text" id="inputBreeds[]" name="inputBreeds[]" data-placeholder="Dog Breeds">
                 <?php 
                 // Retrieve the list from the database and build the option list
+                include('db/getBreeds.php');
+                
+                echo '<option value=""></option>\n';
+                foreach ($breeds as $document) {
+                        echo '<option value="' . $document['name'] . '">' . $document['name'] . '</option>\n';
+                }
                 ?>
-                <option value=""></option>
-                <option value="Maltese">Maltese</option>
-                <option value="Boston Terrier">Boston Terrier</option>
-                <option value="Border Collie">Border Collie</option>
-                <option value="Pit Bull">Pit Bull</option>
-                <option value="Marshmellow Peep">Marshmellow Peep</option>
               </select>
             </div>
           </div>
@@ -96,7 +96,7 @@
             </div>
           </div>
         </form>
-	<div id="registerNowSection" name="registerNowSection">
+        <div id="registerNowSection" name="registerNowSection">
           <hr />
           <h4>Need an account?</h4>
           <button class="btn btn-primary offset1" id="registerBtn" name="registerBtn" onClick="toggleRegistrationOptions()">Register now!</button>

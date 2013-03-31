@@ -10,7 +10,7 @@
           <li><a href="#">Alerts</a></li>
         </ul>
         <ul class="nav pull-right">
-          <li><a href="#">User</a></li>
+          <li><a href="#"><i class="icon-user"></i> User</a></li>
         </ul>
       </div>
     </div>

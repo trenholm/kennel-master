@@ -9,14 +9,9 @@ $db = $m->kennelmaster;
 $collection = $db->breeds;
 
 // Find everything in the collection
-$cursor = $collection->find();
+$cursor = $collection->find()->sort(array("name" => 1));
 
-// Store the results in an array (in session!)
+// Store the results in an array (in session!?)
 $breeds = $cursor;
-
-// TEMP: iterate through the results
-foreach ($cursor as $document) {
-        echo $document['name'] . " <br />";
-}
 
 ?>
