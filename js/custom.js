@@ -7,6 +7,7 @@ $(".chzn-select").chosen();
 function showDogPanel() {
 	$("#addDogPanel").slideDown();
 	$("#content").slideUp();
+	// $("#content").fadeOut();
 }
 
 /**
@@ -15,4 +16,5 @@ function showDogPanel() {
 function hideDogPanel() {
 	$("#addDogPanel").slideUp();
 	$("#content").slideDown();
+	// $("#content").fadeIn();
 }

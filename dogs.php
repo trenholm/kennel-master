@@ -19,6 +19,7 @@
           <?php include('quick-links.php'); ?>
         </div>
         <!--Content-->
+        <?php include('quick-action-dog.php'); ?>
         <div class="span9" id="content" name="content">
 	        <?php include('dog-list.php'); ?>
         </div>

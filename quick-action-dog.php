@@ -1,4 +1,4 @@
-<div class="container span12" id="addDogPanel" name="addDogPanel" style="display:none;">
+<div class="container span9" id="addDogPanel" name="addDogPanel" style="display:none;">
   <div class="row-fluid">
     <form class="form-horizontal" id="addDog" name="addDog" action="db/addDog.php" method="post">
       <div class="control-group">
