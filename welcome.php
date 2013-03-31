@@ -76,7 +76,17 @@
           <div class="control-group" id="inputBreedsField" name="inputBreedsField" style="display: none;">
             <label class="control-label" for="inputBreeds">Breeds</label>
             <div class="controls">
-              <input type="text" id="inputBreeds" name="inputBreeds" placeholder="DROPDOWN LIST">
+              <select class="chzn-select chz-default" multiple type="text" id="inputBreeds" name="inputBreeds" data-placeholder="Choose Breeds">
+                <?php 
+                // Retrieve the list from the database and build the option list
+                ?>
+                <option value=""></option>
+                <option value="Maltese">Maltese</option>
+                <option value="Boston Terrier">Boston Terrier</option>
+                <option value="Border Collie">Border Collie</option>
+                <option value="Pit Bull">Pit Bull</option>
+                <option value="Marshmellow Peep">Marshmellow Peep</option>
+              </select>
             </div>
           </div>
           <div class="control-group">

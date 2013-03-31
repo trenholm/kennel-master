@@ -7,3 +7,5 @@
 function toggleRegistrationOptions() {
 	$('#inputUsername').focus();
 }
+
+$(".chzn-select").chosen();
