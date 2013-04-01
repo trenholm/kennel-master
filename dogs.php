@@ -12,7 +12,6 @@
     <!--Content-->
     <div class="container-fluid">
 
-      <!--Dashboard-->
       <div class="row-fluid">
         <!--Quick Actions-->
         <div class="span3">

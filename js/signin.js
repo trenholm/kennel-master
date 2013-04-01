@@ -79,6 +79,7 @@ function resetForm() {
 
 	// Empty all the filled in form fields
 	$('#signInForm')[0].reset();
+    $(".chzn-select").trigger("liszt:updated");
 
 	// Focus the form on the username field
 	$('#inputUsername').focus();

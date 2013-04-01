@@ -7,22 +7,22 @@
 
   <body>
     <?php 
-      // MAYBE IF LOGGED IN< REDIRECT TO THE DASHBOARD?!
+      // MAYBE IF LOGGED IN -> REDIRECT TO THE DASHBOARD?!
     ?>
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <a class="brand" href="#">Kennel Master</a>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Kennel Master</a>
+        </div>
       </div>
     </div>
-  </div>
 
     <!--Content-->
     <div class="container-fluid">
 
       <!--Welcome Banner-->
       <div class="row-fluid">
-        <h1>Large banner??</h1>
+        <h1 style="background:#C3FDB8;">Large banner??</h1>
       </div>
       
       <!--Log-in Section-->
@@ -76,7 +76,7 @@
           <div class="control-group" id="inputBreedsField" name="inputBreedsField" style="display: none;">
             <label class="control-label" for="inputBreeds">Breeds</label>
             <div class="controls">
-              <select class="chzn-select chz-default" multiple="multiple" type="text" id="inputBreeds[]" name="inputBreeds[]" data-placeholder="Dog Breeds">
+              <select class="chzn-select" multiple="multiple" type="text" id="inputBreeds[]" name="inputBreeds[]" data-placeholder="Dog Breeds">
                 <?php 
                 // Retrieve the list from the database and build the option list
                 include('db/getBreeds.php');
@@ -92,7 +92,7 @@
           <div class="control-group">
             <div class="controls">
               <button type="submit" class="btn btn-success" id="mainBtn" name="mainBtn">Sign in</button>
-              <button type="button" class="btn" id="cancelBtn" name="cancelBtn" onClick="resetForm();">Cancel</button>
+              <button type="reset" class="btn" id="cancelBtn" name="cancelBtn" onClick="resetForm();">Cancel</button>
             </div>
           </div>
         </form>

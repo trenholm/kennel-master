@@ -6,9 +6,9 @@
       </div>
     </div>
     <div class="control-group" id="inputRegistrationField" name="inputRegistrationField">
-      <label class="control-label" for="inputRegistration">Registration Number</label>
+      <label class="control-label" for="inputRegistration">Registration</label>
       <div class="controls">
-        <input type="text" id="inputRegistration" name="inputRegistration" placeholder="Registration Number">
+        <input type="text" id="inputRegistration" name="inputRegistration" placeholder="Registration">
       </div>
     </div>
     <div class="control-group" id="inputNameField" name="inputNameField">

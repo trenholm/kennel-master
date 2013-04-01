@@ -9,15 +9,16 @@
     <!--Navigation-->
     <?php include('navigation.php'); ?>
 
-    <!--Content-->
+    <!--Container-->
     <div class="container-fluid">
 
-      <!--Dashboard-->
       <div class="row-fluid">
-        <div class="span4" id="quick" name="quick">
-          Upcoming Alerts
+        <!--Quick Actions-->
+        <div class="span3">
+          <?php include('quick-links.php'); ?>
         </div>
-        <div class="span8" id="content" name="content">
+        <!--Content-->
+        <div class="span9">
           Quick Actions
         </div>
       </div>
