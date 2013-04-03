@@ -1,5 +1,10 @@
 <?php
+session_start();
 
-// TODO if not logged in, re-route the user to the sign-in screen (deny all access otherwise)
+// If the user is not logged in, ALWAYS redirect to the welcome page
+if ( !isset($_SESSION['username']) ) {
+	header("Cache-Control: no-cache");
+    header('Location: welcome.php', true, 302);
+}
 
 ?>

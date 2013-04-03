@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// If the user is already logged in, ALWAYS redirect to the index page
+if ( isset($_SESSION['username']) ) {
+  header("Cache-Control: no-cache");
+  header('Location: index.php', true, 302);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,9 +16,6 @@
   </head>
 
   <body>
-    <?php 
-      // MAYBE IF LOGGED IN -> REDIRECT TO THE DASHBOARD?!
-    ?>
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container-fluid">

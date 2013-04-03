@@ -1,3 +1,4 @@
+<?php include('security.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,11 +15,13 @@
 
       <!--Dashboard-->
       <div class="row-fluid dashboard">
-        <div class="span4">
-          Upcoming Alerts
+        <!--Quick Actions-->
+        <div class="span3">
+        <?php include('quick-links.php'); ?>
         </div>
-        <div class="span8">
-          Quick Actions
+        <!--Upcoming Alerts-->
+        <div class="span9">
+        Alerts Here
         </div>
       </div>
 

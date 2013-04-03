@@ -1,3 +1,4 @@
+<?php include('security.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,13 +13,15 @@
     <!--Content-->
     <div class="container-fluid">
 
-      <div class="row-fluid">
+      <!--Dashboard-->
+      <div class="row-fluid dashboard">
         <!--Quick Actions-->
         <div class="span3">
-          <?php include('quick-links.php'); ?>
+        <?php include('quick-links.php'); ?>
         </div>
+        <!--Upcoming Alerts-->
         <div class="span9">
-          Litters
+        <?php include('dashboard-alerts.php'); ?>
         </div>
       </div>
 
