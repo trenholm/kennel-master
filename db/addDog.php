@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Retrieve the new dog information from the request
 $registration = $_REQUEST['inputRegistration'];
 $name = $_REQUEST['inputName'];
@@ -8,8 +10,9 @@ $sire = $_REQUEST['inputSire'];
 $dame = $_REQUEST['inputDame'];
 $dateofbirth = $_REQUEST['inputDateOfBirth'];
 
-// username (i.e. the dog owner!!)
+// Get the collection name
 $username = $_SESSION['username'];
+$dbname = $username.'_dogs';
 
 // Connect to the MongoDB
 $m = new MongoClient();
@@ -18,7 +21,7 @@ $m = new MongoClient();
 $db = $m->kennelmaster;
 
 // Select a collection
-$collection = $db->dogs;
+$collection = $db->$dbname;
 
 // Insert the dog into the collection
 $document = array( 
@@ -28,8 +31,7 @@ $document = array(
 	"gender" => $gender,
 	"sire" => $sire,
 	"dame" => $dame,
-	"dateOfBirth" => $dateofbirth,
-	"user" => $username
+	"date_of_birth" => $dateofbirth
 );
 
 //$collection->insert($document);
