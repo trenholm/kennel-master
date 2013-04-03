@@ -9,11 +9,11 @@
     <table class="tablesorter table table-striped table-hover" id="dogTable" name="dogTable">
       <thead>
         <tr>
-          <th>Registration <i class="icon-sort" name="sort"></i></th>
-          <th>Name <i class="icon-sort" name="sort"></i></th>
-          <th>Callname <i class="icon-sort" name="sort"></th>
-          <th>Gender <i class="icon-sort" name="sort"></th>
-          <th>Date of Birth <i class="icon-sort" name="sort"></th>
+          <th>Registration</th>
+          <th>Name</th>
+          <th>Callname</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
         </tr>
       </thead>
       <tbody>
