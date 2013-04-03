@@ -7,6 +7,19 @@ if ( isset($_SESSION['username']) ) {
   header('Location: index.php', true, 302);
 }
 
+// Check if the user attempted to sign in but had an error
+if ( isset($_SESSION['error']) ) {
+  // Rereieve message
+  $message = $_SESSION['error']['message'];
+  $username = $_SESSION['error']['username'];
+  // Build error message notification
+  $errorMsg = '<div class="alert alert-error" id="notification" name="notification">' . 
+        '<button type="button" class="close" data-dismiss="alert">x</button>' . 
+        '<strong>Warning</strong> ' . $message . '</div>';
+
+  unset($_SESSION['error']);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +44,10 @@ if ( isset($_SESSION['username']) ) {
       <div class="row-fluid">
         <h1 style="background:#C3FDB8;">Large banner??</h1>
       </div>
-      
+
+      <!--Notification Message-->
+      <?php echo $errorMsg; ?>
+
       <!--Log-in Section-->
       <div class="row-fluid" id="sign-in-section" name="sign-in-section">
         <div class="">
@@ -41,25 +57,37 @@ if ( isset($_SESSION['username']) ) {
           <div class="control-group" id="inputUsernameField" name="inputUsernameField">
             <label class="control-label" for="inputUsername">Username</label>
             <div class="controls">
-              <input type="text" id="inputUsername" name="inputUsername" placeholder="Username">
+              <?php 
+              if ( $username ) {
+                echo '<input type="text" id="inputUsername" name="inputUsername" placeholder="Username" value="'. $username .'">';
+              } 
+              else {
+                echo '<input type="text" id="inputUsername" name="inputUsername" placeholder="Username">';
+              }
+              ?>
+              
+              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputPasswordField" name="inputPasswordField">
             <label class="control-label" for="inputPassword">Password</label>
             <div class="controls">
               <input type="password" id="inputPassword" name="inputPassword" placeholder="Password" onKeyPress="return submitForm(event)">
+              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputConfirmPasswordField" name="inputConfirmPasswordField" style="display: none;">
             <label class="control-label" for="inputConfirmPassword">Confirm Password</label>
             <div class="controls">
               <input type="password" id="inputConfirmPassword" name="inputConfirmPassword" placeholder="Confirm Password">
+              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputEmailField" name="inputEmailField" style="display: none;">
             <label class="control-label" for="inputEmail">Email</label>
             <div class="controls">
               <input type="email" id="inputEmail" name="inputEmail" placeholder="Email">
+              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputCreditCardField" name="inputCreditCardField" style="display: none;">

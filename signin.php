@@ -1,32 +1,45 @@
 <?php
+session_start();
 
+// Retrieve the username/password from the POST request
 $username = $_REQUEST['inputUsername'];
 $password = $_REQUEST['inputPassword'];
 
-$errorMsg = "";
-$numRows = "";
+// Query for the database
+$query = array('username'=>$username, 'password'=>$password);
 
 // to prevent script injections & attacks
-$username = htmlspecialchars($username);
-// SALT the password??
+// $username = htmlspecialchars($username);
+// TODO SALT the password??
 
-// TODO check if user is in database
-// check if password matches
-// log user in (session)
-// redirect user to dashboard (successful)
+// Connect to the MongoDB
+$m = new MongoClient();
+
+// Select the database
+$db = $m->kennelmaster;
+
+// Select a collection
+$collection = $db->users;
+
+// Find everything in the collection (for the logged-in user)
+$cursor = $collection->find($query);
+
+// If signed in correctly (i.e. only one result was returned for given username and password)
+if ($cursor->count() == 1) {
+	// Store the username in the session
+	$_SESSION['username'] = $username;
+
+	// Redirect to the dashboard
+	header("Cache-Control: no-cache");
+	header('Location: index.php', true, 302);
+}
 // FAIL - redirect user to welcome page, highlighting error (username/password) and setting value for username?
-// -------- "shake" the login since you failed??
+else {
+	$_SESSION['error']['message'] = "There was a problem with your username/password combination. Please try again.";
+	$_SESSION['error']['username'] = $username;
+	// -------- "shake" the login since you failed??
+	header('Location: welcome.php', true, 302);
+}
 
-// if successful {
- 
-// Store the username in the session
-session_start();
-$_SESSION['username'] = $username;
-
-// Redirect to the dashboard
-header("Cache-Control: no-cache");
-header('Location: index.php', true, 302);
-
-// }
 
 ?>
