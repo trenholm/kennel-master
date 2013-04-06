@@ -31,12 +31,10 @@
           }
         ?>
         <tr>
-          <td>2</td><td>hello</td><td>sample</td><td>male</td><td>2012-02-02</td>
+          <td>0</td><td>sample dog</td><td>sample</td><td>male</td><td>2012-02-02</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="row-fluid" id="dog-detail" name="dog-detail" style="display:none;">
-
-  </div>
+  <?php include('dog-details.php'); ?>
 </div>

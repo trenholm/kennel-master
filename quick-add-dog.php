@@ -3,8 +3,8 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Add New Dog</h3>
   </div>
-  <form class="form-horizontal" id="addDog" name="addDog" action="db/addDog.php" method="post">
-    <div class="modal-body">
+  <div class="modal-body">
+    <form class="form-horizontal" id="addDog" name="addDog" action="db/addDog.php" method="post" enctype="multipart/form-data">
       <div class="control-group" id="inputRegistrationField" name="inputRegistrationField">
         <label class="control-label" for="inputRegistration">Registration</label>
         <div class="controls">
@@ -47,15 +47,10 @@
           <input type="date" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="Date of Birth">
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <div class="control-group">
-        <div class="controls">
-          <button type="submit" class="btn btn-success">Add dog</button>
-          <button type="reset" class="btn btn-danger" id="cancelBtn" name="cancelBtn" onClick="hideDogPanel();">Cancel</button>
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        </div>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
+  <div class="modal-footer control-group">
+    <button form="addDog" type="submit" class="btn btn-success">Add dog</button>
+    <button form="addDog" type="reset" class="btn btn-danger" id="cancelBtn" name="cancelBtn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>
 </div>

@@ -34,9 +34,12 @@ $document = array(
 	"date_of_birth" => $dateofbirth
 );
 
-//$collection->insert($document);
+$collection->insert($document);
 
-// redirect back to the dog-list (dogs.php)
-// display success message?
+// TODO: redirect back to the dog-list (dogs.php)
+header("Cache-Control: no-cache");
+header('Location: ../dogs.php', true, 302);
+
+// TODO: display success message?
 
 ?>
