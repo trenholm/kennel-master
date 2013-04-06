@@ -20,7 +20,7 @@
         </div>
         <!--Content-->
         <div class="span9">
-          <?php include('quick-action-dog.php'); ?>
+          <?php include('quick-add-dog.php'); ?>
 	        <?php include('dog-list.php'); ?>
         </div>
       </div>
