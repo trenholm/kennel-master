@@ -36,7 +36,7 @@ $document = array(
 
 $collection->insert($document);
 
-// TODO: redirect back to the dog-list (dogs.php)
+// Redirect back to the dog-list (dogs.php)
 header("Cache-Control: no-cache");
 header('Location: ../dogs.php', true, 302);
 

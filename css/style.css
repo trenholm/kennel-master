@@ -1,7 +1,11 @@
 .quick-link {
-    height: 5em;
+    height: 4em;
 }
 
 table.tablesorter thead tr .header {
 	cursor: pointer;
+}
+
+.btn-edit {
+	display: inline-block;
 }

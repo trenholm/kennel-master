@@ -14,7 +14,7 @@ if ( isset($_SESSION['error']) ) {
   $username = $_SESSION['error']['username'];
   // Build error message notification
   $errorMsg = '<div class="alert alert-error" id="notification" name="notification">' . 
-        '<button type="button" class="close" data-dismiss="alert">x</button>' . 
+        '<button type="button" class="close" data-dismiss="alert">&times;</button>' . 
         '<strong>Warning</strong> ' . $message . '</div>';
 
   unset($_SESSION['error']);

@@ -11,22 +11,3 @@ $(document).ready(function() {
         widgets : ['zebra','columns', 'uitheme']
     });
 });
-
-/**
- * Function to 
- */
-function showDogPanel() {
-	$("#addDogPanel").slideDown();
-	$("#content").slideUp();
-	// $("#content").fadeOut();
-}
-
-/**
- * Function to 
- */
-function hideDogPanel() {
-	$("#addDogPanel").slideUp();
-	$("#content").slideDown();
-	// $("#content").fadeIn();
-}
-
