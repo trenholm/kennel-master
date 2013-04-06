@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+// Get the collection name
+$username = $_SESSION['username'];
+$dbname = $username.'_litters';
+
 // Connect to the MongoDB
 $m = new MongoClient();
 
@@ -6,11 +12,12 @@ $m = new MongoClient();
 $db = $m->kennelmaster;
 
 // Select a collection
-$collection = $db->litters;
+$collection = $db->$dbname;
 
 // Find everything in the collection (for the logged-in user)
 $cursor = $collection->find();
 
 // Store the results in an array (in session!)
 $litters = $cursor;
+
 ?>

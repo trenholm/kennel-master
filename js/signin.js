@@ -48,6 +48,7 @@ function expandForm() {
 
 	// Display additional fields (optional and required fields)
 	showAdditionalFields();
+	showRequiredMessage();
 
 	// Hide the registration button
 	$('#registerNowSection').hide()
@@ -70,6 +71,7 @@ function resetForm() {
 
 	// Hide additional fields (optional and required fields)
 	hideAdditionalFields();
+	hideRequiredMessage();
 
 	// Show the registration button
 	$('#registerNowSection').show()
@@ -77,9 +79,13 @@ function resetForm() {
 	// Change the validation requirements?!
 	// TODO
 
+	// Hide any notifications
+	$('#notification').hide();
+
 	// Empty all the filled in form fields
 	$('#signInForm')[0].reset();
     $(".chzn-select").trigger("liszt:updated");
+	$('#signInForm input#inputUsername').attr('value', '');
 
 	// Focus the form on the username field
 	$('#inputUsername').focus();
@@ -108,3 +114,17 @@ function hideAdditionalFields() {
 	$('#inputAddressField').slideUp();
 	$('#inputBreedsField').slideUp();
 }
+
+/**
+ * Function to display the "required" message on inputs
+ */
+ function showRequiredMessage() {
+ 	$('.label').fadeIn("slow");
+ }
+
+/**
+ * Function to display the "required" message on inputs
+ */
+ function hideRequiredMessage() {
+ 	$('.label').fadeOut("slow");
+ }

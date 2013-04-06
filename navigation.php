@@ -26,18 +26,7 @@
           <?php 
             $username = $_SESSION['username'];
             echo '<a href="account.php"><i class="icon-user"></i> ' . $username . '</a></li>';
-            echo '<li><a href="logout.php"><i class="icon-signout"></i> Sign out</a></li>'; 
-
-            // // Display dropdown menu to update your profile or log out
-            // echo '<a href="#" class="navbar-link dropdown-toggle" data-toggle="dropdown">' . 
-            //   '<i class="icon-user"></i> ' . $username . '</a>';
-            // // include down icon
-            // echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">' . 
-            //   '<li><a href="playerDetail.php?pid='.$player.'" tabindex="-1"><i class="icon-user"></i> Your profile</a></li>' .
-            //   '<li><a href="playerProfile.php" tabindex="-1"><i class="icon-pencil"></i> Edit profile</a></li>' . 
-            //   '<li><a href="logout.php" tabindex="-1"><i class="icon-signout"></i> Sign out</a></li>';
-            // echo '</ul></li>';
-          
+            echo '<li><a href="logout.php"><i class="icon-signout"></i> Sign out</a></li>';           
           ?>
         </ul>
       </div>

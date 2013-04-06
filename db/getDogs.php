@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+// Get the collection name
+$username = $_SESSION['username'];
+$dbname = $username.'_dogs';
+
 // Connect to the MongoDB
 $m = new MongoClient();
 
@@ -6,7 +12,7 @@ $m = new MongoClient();
 $db = $m->kennelmaster;
 
 // Select a collection
-$collection = $db->dogs;
+$collection = $db->$dbname;
 
 // Find everything in the collection (for the logged-in user)
 $cursor = $collection->find()->sort(array("name" => 1));
