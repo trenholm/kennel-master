@@ -1,5 +1,6 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.js"></script>
 <script src="js/chosen.jquery.min.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
 <script src="js/jquery.tablesorter.widgets.min.js"></script>

@@ -9,3 +9,8 @@ table.tablesorter thead tr .header {
 .btn-edit {
 	display: inline-block;
 }
+
+.error {
+	font-style: italic;
+	color: #FF0000;
+}

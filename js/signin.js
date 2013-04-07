@@ -4,6 +4,45 @@
 $(document).ready(function() {
 	// Initially focus on the username field of the form by default
 	$('#inputUsername').focus();
+
+	// Initialize the validation of the form
+	$("#signInForm").validate({
+		rules: {
+			inputUsername: {
+				required: true,
+				minlength: 6
+			},
+			inputPassword: {
+				required: true,
+				minlength: 5
+			},
+			inputConfirmPassword: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			inputEmail: {
+				required: true,
+				email: true
+			}
+		},
+		messages: {
+			inputUsername: {
+				required: "Please enter a username",
+				minlength: "Your username must consist of at least 6 characters"
+			},
+			inputPassword: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long"
+			},
+			inputConfirmPassword: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long",
+				equalTo: "Please enter the same password as above"
+			},
+			inputEmail: "Please enter a valid email address"
+		}
+	});
 });
 
 /** 
@@ -48,13 +87,10 @@ function expandForm() {
 
 	// Display additional fields (optional and required fields)
 	showAdditionalFields();
-	showRequiredMessage();
+//	showRequiredMessage();
 
 	// Hide the registration button
 	$('#registerNowSection').hide()
-
-	// Change the validation requirements?!
-	// TODO
 }
 
 /**
@@ -71,13 +107,10 @@ function resetForm() {
 
 	// Hide additional fields (optional and required fields)
 	hideAdditionalFields();
-	hideRequiredMessage();
+//	hideRequiredMessage();
 
 	// Show the registration button
 	$('#registerNowSection').show()
-
-	// Change the validation requirements?!
-	// TODO
 
 	// Hide any notifications
 	$('#notification').hide();

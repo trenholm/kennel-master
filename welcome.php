@@ -65,35 +65,30 @@ if ( isset($_SESSION['error']) ) {
                 echo '<input type="text" id="inputUsername" name="inputUsername" placeholder="Username">';
               }
               ?>
-              
-              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputPasswordField" name="inputPasswordField">
             <label class="control-label" for="inputPassword">Password</label>
             <div class="controls">
               <input type="password" id="inputPassword" name="inputPassword" placeholder="Password" onKeyPress="return submitForm(event)">
-              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputConfirmPasswordField" name="inputConfirmPasswordField" style="display: none;">
             <label class="control-label" for="inputConfirmPassword">Confirm Password</label>
             <div class="controls">
               <input type="password" id="inputConfirmPassword" name="inputConfirmPassword" placeholder="Confirm Password">
-              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputEmailField" name="inputEmailField" style="display: none;">
             <label class="control-label" for="inputEmail">Email</label>
             <div class="controls">
               <input type="email" id="inputEmail" name="inputEmail" placeholder="Email">
-              <span class="label label-important help-inline" style="display: none;">required</span>
             </div>
           </div>
           <div class="control-group" id="inputCreditCardField" name="inputCreditCardField" style="display: none;">
             <label class="control-label" for="inputCreditCard">Credit Card</label>
             <div class="controls">
-              <input type="password" id="inputCreditCard" name="inputCreditCard" placeholder="Password">
+              <input type="password" id="inputCreditCard" name="inputCreditCard" placeholder="Credit Card">
             </div>
           </div>
           <div class="control-group" id="inputKennelNameField" name="inputKennelNameField" style="display: none;">
@@ -137,11 +132,9 @@ if ( isset($_SESSION['error']) ) {
           <button class="btn btn-primary offset1" id="registerBtn" name="registerBtn" onClick="toggleRegistrationOptions()">Register now!</button>
         </div>
       </div>
-
       <!--Footer-->
       <?php include('footer.php'); ?>
     </div>
-    
     <?php include('requiredJS.php'); ?>
     <script src="js/signin.js"></script>
   </body>
