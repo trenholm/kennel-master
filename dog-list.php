@@ -29,13 +29,11 @@
                    . '</td><td id="gender" name="gender">' . $document['gender'] 
                    . '</td><td id="dateOfBirth" name="dateOfBirth">' . $document['date_of_birth'] 
                    . '</td><td id="sire" name="sire" style="display:none;">' . $document['sire'] 
-                   . '</td><td id="dame" name="dame" style="display:none;">' . $document['dame'] 
+                   . '</td><td id="dame" name="dame" style="display:none;">' . $document['dame']  
+                   . '</td><td id="breed" name="breed" style="display:none;">' . $document['breed']
                    . '</td></tr>';
           }
         ?>
-        <tr>
-          <td>0</td><td>sample dog</td><td>sample</td><td>male</td><td>2012-02-02</td>
-        </tr>
       </tbody>
     </table>
   </div>

@@ -27,6 +27,10 @@
 					<td id="dateOfBirth" name="dateOfBirth"></td>
 				</tr>
 				<tr>
+					<th>Breed:</th>
+					<td id="breed" name="breed"></td>
+				</tr>
+				<tr>
 					<th>Sire:</th>
 					<td id="sire" name="sire"></td>
 				</tr>
