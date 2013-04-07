@@ -1,4 +1,4 @@
-  <div class="row-fluid" id="dog-detail" name="dog-detail" >
+  <div class="row-fluid" id="detail-pane" name="detail-pane" style="display:none;">
 	<div>
 		<h3>Dog Name <button class="btn btn-small" id="btn-edit" name="btn-edit">Edit Details</button></h3>
 	</div>

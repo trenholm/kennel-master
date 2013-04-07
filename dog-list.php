@@ -1,11 +1,12 @@
-<div class="row-fluid" id="content" name="content">
-  <div  class="row-fluid " id="search-bar" name="search-bar">
+
+  <div  class="row-fluid span12" id="search-bar" name="search-bar">
     <form class="form-search input-append span12">
       <input type="text" class="span11" name="search" id="search" placeholder="Search">
       <button type="button" class="btn"><i class="icon-search"></i> Search</button>
     </form>
   </div>
-  <div class="row-fluid" id="dog-list" name="dog-list">
+<div class="row-fluid" id="content" name="content">
+  <div class="row-fluid" id="list-pane" name="list-pane">
     <table class="tablesorter table table-striped table-hover" id="dogTable" name="dogTable">
       <thead>
         <tr>
