@@ -17,7 +17,6 @@
         <!--Quick Actions-->
         <div class="span3">
           <?php include('quick-links.php'); ?>
-          <button onClick="toggleDetails();">Toggle</button>
         </div>
         
         <!--Content-->

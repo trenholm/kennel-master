@@ -23,11 +23,13 @@
           include('db/getDogs.php');
           
           foreach ($dogs as $document) {
-                  echo '<tr><td>' . $document['registration']
-                   . '</td><td><a href="welcome.php">' . $document['name'] 
-                   . '</a></td><td>' . $document['callname'] 
-                   . '</td><td>' . $document['gender'] 
-                   . '</td><td>' . $document['date_of_birth'] 
+                  echo '<tr class="list-item"><td id="registration" name="registration">' . $document['registration']
+                   . '</td><td id="name" name="name">' . $document['name'] 
+                   . '</td><td id="callname" name="callname">' . $document['callname'] 
+                   . '</td><td id="gender" name="gender">' . $document['gender'] 
+                   . '</td><td id="dateOfBirth" name="dateOfBirth">' . $document['date_of_birth'] 
+                   . '</td><td id="sire" name="sire" style="display:none;">' . $document['sire'] 
+                   . '</td><td id="dame" name="dame" style="display:none;">' . $document['dame'] 
                    . '</td></tr>';
           }
         ?>

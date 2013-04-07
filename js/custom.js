@@ -13,9 +13,23 @@ $(document).ready(function() {
 });
 
 /**
- * Function to switch between list and details
+ * Function to switch the visibility between list and details
  */
 function toggleDetails() {
-	$("#list-pane").toggle("slide", {direction: 'left'});
-    $("#detail-pane").toggle("slide", {direction: 'right'});
+	$("#list-pane").slideToggle();
+	$("#detail-pane").slideToggle();
 }
+
+/**
+ * 
+ */
+$('.list-item').on("click", function() {
+	$(this).find('td').each(function() {
+		var row = $(this).attr("id");
+		var val = $(this).html();
+		var next = $('#'+row,'#detail-pane');
+		next.html(val);
+	});
+
+	toggleDetails();	
+});

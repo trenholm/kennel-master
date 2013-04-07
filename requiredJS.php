@@ -1,5 +1,4 @@
 <script src="js/jquery.min.js"></script>
-<script src="js/jquery-ui.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/chosen.jquery.min.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
@@ -10,4 +9,3 @@
 <!--[if lt IE 9]>
   <script src="js/html5shiv.js"></script>
 <![endif]-->
-

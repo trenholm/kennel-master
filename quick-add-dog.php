@@ -1,4 +1,4 @@
-<div class="modal hide fade" id="addDogPanel" name="addDogPanel">
+<div class="modal hide fade" tabindex="-1" id="addDogPanel" name="addDogPanel">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Add New Dog</h3>
