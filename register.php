@@ -11,6 +11,9 @@ $breeds = $_REQUEST['inputBreeds'];
 
 // check if user already exists in the database? (or client-side?)
 
+// Double-check that password was entered correctly
+
+
 // TODO need to include the breeds!!
 $document = array(
 	"username" => $username,
@@ -21,9 +24,9 @@ $document = array(
 	"address" => $address
 );
 
-// if successfully registered, save username to session and redirect to the dashboard
 $collection->insert($document);
 
+// if successfully registered, save username to session and redirect to the dashboard
 
 // Query for the database
 $query = array('username'=>$username, 'password'=>$password);
