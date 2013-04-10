@@ -23,7 +23,9 @@
           include('db/getDogs.php');
           
           foreach ($dogs as $document) {
-                  echo '<tr class="list-item"><td id="registration" name="registration">' . $document['registration']
+                  echo '<tr class="list-item">';
+
+                  echo '<td id="registration" name="registration">' . $document['registration']
                    . '</td><td id="name" name="name">' . $document['name'] 
                    . '</td><td id="callname" name="callname">' . $document['callname'] 
                    . '</td><td id="gender" name="gender">' . $document['gender'] 
@@ -31,7 +33,9 @@
                    . '</td><td id="sire" name="sire" style="display:none;">' . $document['sire'] 
                    . '</td><td id="dame" name="dame" style="display:none;">' . $document['dame']  
                    . '</td><td id="breed" name="breed" style="display:none;">' . $document['breed']
-                   . '</td></tr>';
+                   . '</td>';
+
+                   echo '</tr>';
           }
         ?>
       </tbody>

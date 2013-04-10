@@ -47,6 +47,22 @@
           <input type="date" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="Date of Birth">
         </div>
       </div>
+      <div class="control-group" id="inputBreedsField" name="inputBreedsField">
+        <label class="control-label" for="inputBreeds">Breed</label>
+        <div class="controls">
+          <select class="chzn-select chzn-container chzn-container-single" type="text" id="inputBreeds" name="inputBreeds" data-placeholder="Breed">
+            <?php 
+            // Retrieve the list from the database and build the option list
+            include('db/getBreeds.php');
+            
+            echo '<option value=""></option>\n';
+            foreach ($breeds as $document) {
+                    echo '<option value="' . $document['name'] . '">' . $document['name'] . '</option>\n';
+            }
+            ?>
+          </select>
+        </div>
+      </div>
     </form>
   </div>
   <div class="modal-footer control-group">
