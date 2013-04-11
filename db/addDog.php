@@ -9,6 +9,7 @@ $gender = $_REQUEST['inputGender'];
 $sire = $_REQUEST['inputSire'];
 $dame = $_REQUEST['inputDame'];
 $dateofbirth = $_REQUEST['inputDateOfBirth'];
+$breed = $_REQUEST['inputBreeds'];
 
 // Get the collection name
 $username = $_SESSION['username'];
@@ -31,7 +32,8 @@ $document = array(
 	"gender" => $gender,
 	"sire" => $sire,
 	"dame" => $dame,
-	"date_of_birth" => $dateofbirth
+	"date_of_birth" => $dateofbirth,
+	"breed" => $breed
 );
 
 $collection->insert($document);
