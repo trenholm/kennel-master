@@ -11,6 +11,15 @@ $breeds = $_REQUEST['inputBreeds'];
 
 // check if user already exists in the database? (or client-side?)
 
+// Connect to the MongoDB
+$m = new MongoClient();
+
+// Select the database
+$db = $m->kennelmaster;
+
+// Select a collection
+$collection = $db->users;
+
 // Double-check that password was entered correctly
 
 
@@ -30,9 +39,6 @@ $collection->insert($document);
 
 // Query for the database
 $query = array('username'=>$username, 'password'=>$password);
-
-// Select a collection
-$collection = $db->users;
 
 // Find everything in the collection (for the logged-in user)
 $cursor = $collection->find($query);
