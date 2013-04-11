@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // retrieve the post data
 $username = $_REQUEST['inputUsername'];
 $password = $_REQUEST['inputPassword'];
