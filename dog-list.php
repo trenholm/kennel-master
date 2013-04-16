@@ -10,8 +10,8 @@
     <table class="tablesorter table table-striped table-hover" id="dogTable" name="dogTable">
       <thead>
         <tr>
-          <th>Registration</th>
-          <th>Name</th>
+          <th>Registration #</th>
+          <th>Registered Name</th>
           <th>Callname</th>
           <th>Gender</th>
           <th>Date of Birth</th>

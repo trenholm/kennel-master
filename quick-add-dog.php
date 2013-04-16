@@ -6,13 +6,13 @@
   <div class="modal-body">
     <form class="form-horizontal" id="addDog" name="addDog" action="db/addDog.php" method="post" enctype="multipart/form-data">
       <div class="control-group" id="inputRegistrationField" name="inputRegistrationField">
-        <label class="control-label" for="inputRegistration">Registration</label>
+        <label class="control-label" for="inputRegistration">Registration #</label>
         <div class="controls">
           <input type="text" id="inputRegistration" name="inputRegistration" placeholder="Registration">
         </div>
       </div>
       <div class="control-group" id="inputNameField" name="inputNameField">
-        <label class="control-label" for="inputName">Name</label>
+        <label class="control-label" for="inputName">Registered Name</label>
         <div class="controls">
           <input type="text" id="inputName" name="inputName" placeholder="Name">
         </div>
