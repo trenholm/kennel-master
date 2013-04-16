@@ -19,7 +19,7 @@ $(document).ready(function() {
 			inputConfirmPassword: {
 				required: true,
 				minlength: 5,
-				equalTo: "#password"
+				equalTo: "#inputPassword"
 			},
 			inputEmail: {
 				required: true,

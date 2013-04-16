@@ -22,7 +22,7 @@ $db = $m->kennelmaster;
 // Select a collection
 $collection = $db->users;
 
-// Double-check that password was entered correctly
+// Double-check that password was entered correctly??
 
 
 // TODO need to include the breeds!!
@@ -52,7 +52,7 @@ if ($cursor->count() == 1) {
 
 	// Redirect to the dashboard
 	header("Cache-Control: no-cache");
-	header('Location: index.php', true, 302);
+	header('Location: account.php', true, 302);
 }
 // FAIL - redirect user to welcome page, highlighting error (username/password) and setting value for username?
 else {
