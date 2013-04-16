@@ -5,6 +5,22 @@
   </div>
   <div class="modal-body">
     <form class="form-horizontal" id="addDog" name="addDog" action="db/addDog.php" method="post" enctype="multipart/form-data">
+      <div class="control-group" id="inputBreedsField" name="inputBreedsField">
+        <label class="control-label" for="inputBreeds">Breed</label>
+        <div class="controls">
+          <select class="chzn-select" type="text" id="inputBreeds" name="inputBreeds" tab-index="-1" data-placeholder="Breed">
+            <?php 
+            // Retrieve the list from the database and build the option list
+            include('db/getBreeds.php');
+            
+            echo '<option value=""></option>\n';
+            foreach ($breeds as $document) {
+                    echo '<option value="' . $document['name'] . '">' . $document['name'] . '</option>\n';
+            }
+            ?>
+          </select>
+        </div>
+      </div>
       <div class="control-group" id="inputRegistrationField" name="inputRegistrationField">
         <label class="control-label" for="inputRegistration">Registration #</label>
         <div class="controls">
@@ -45,22 +61,6 @@
         <label class="control-label" for="inputDateOfBirth">Date of Birth</label>
         <div class="controls">
           <input type="date" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="Date of Birth">
-        </div>
-      </div>
-      <div class="control-group" id="inputBreedsField" name="inputBreedsField">
-        <label class="control-label" for="inputBreeds">Breed</label>
-        <div class="controls">
-          <select class="chzn-select chzn-container chzn-container-single" type="text" id="inputBreeds" name="inputBreeds" data-placeholder="Breed">
-            <?php 
-            // Retrieve the list from the database and build the option list
-            include('db/getBreeds.php');
-            
-            echo '<option value=""></option>\n';
-            foreach ($breeds as $document) {
-                    echo '<option value="' . $document['name'] . '">' . $document['name'] . '</option>\n';
-            }
-            ?>
-          </select>
         </div>
       </div>
     </form>
