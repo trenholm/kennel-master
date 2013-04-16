@@ -30,6 +30,6 @@
     </div>
     
     <?php include('requiredJS.php'); ?>
-    <script src="js/editdetails.js"></script>
+    <script src="js/details.js"></script>
   </body>
 </html> 
