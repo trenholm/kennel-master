@@ -53,7 +53,7 @@ if ( isset($_SESSION['error']) ) {
         <div class="">
           <h3>Sign In or Register</h3>
         </div>
-        <form class="form-horizontal" id="signInForm" name="signInForm" action="signin.php" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" id="signInForm" name="signInForm" action="db/signin.php" method="post" enctype="multipart/form-data">
           <div class="control-group" id="inputUsernameField" name="inputUsernameField">
             <label class="control-label" for="inputUsername">Username</label>
             <div class="controls">

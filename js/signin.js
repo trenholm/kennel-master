@@ -65,7 +65,7 @@ function toggleRegistrationOptions() {
 	var form = $('#signInForm');
 
 	// if user wants to register a new account
-	if (form.attr('action') == 'signin.php') {
+	if (form.attr('action') == 'db/signin.php') {
 		expandForm();
 	}
 	else {
@@ -78,7 +78,7 @@ function toggleRegistrationOptions() {
  */
 function expandForm() {
 	// Change the form destination (register account)
-	$('#signInForm').attr('action', 'register.php');
+	$('#signInForm').attr('action', 'db/register.php');
 	$('#signInForm button[name="mainBtn"]').html('Register');
 
 	// add header for the different sections
@@ -98,7 +98,7 @@ function expandForm() {
  */
 function resetForm() {
 	// Change the form destination (sign-in account)
-	$('#signInForm').attr('action', 'signin.php');
+	$('#signInForm').attr('action', 'db/signin.php');
 	$('#signInForm button[name="mainBtn"]').html('Sign in');
 
 	// remove headers for the different sections
