@@ -21,7 +21,7 @@ function toggleDetails() {
 
 /**
  * Give list items the click functionality
- * TODO implement hover CSS for better usability
+ * TODO: implement (hover) CSS for better usability
  */
 $('.list-item').on("click", function() {
 	// Retrieve the dog details from the list
@@ -49,6 +49,12 @@ function displayInformation(listItem) {
 		// Store the value with the row and display the contents
 		next.data('data-store',val);
 		next.html(val);
+	});
+
+	// Add click-listeners / links to Sire and Dame fields
+	$('#dame', '#detail-pane').on("click", function(){
+		var dog = findDogFromList($(this).text());
+		displayInformation($(dog).parent());
 	});
 }
 
@@ -78,27 +84,65 @@ $('#btn-remove').on("click", function() {
 });
 
 /**
+ *
+ */
+function findDogFromList(name) {
+	// toggleDetails();
+	var item = $('tr.list-item').find('td#name:contains('+name+')');
+	// displayInformation($(item).parent());
+	// toggleDetails();
+	return item;
+}
+
+/**
+ * Function to reset the editing options of the dog details page
+ */
+function resetEditOptions() {
+	// Reset the edit button
+	$('#btn-edit').removeClass('btn-success');
+	$('#btn-edit').addClass('btn-info');
+	$('#btn-edit').html('<i class="icon-edit"></i> Edit Details');
+
+	// No longer editing mode
+	$('#btn-edit').data('isEditing', false);
+
+	// Hide cancel button
+	$('#btn-cancel').hide();
+}
+
+/**
+ * Function to begin editing dog details
+ */
+function enterEditMode() {
+	// Change button colour and description
+	$('#btn-edit').removeClass('btn-info');
+	$('#btn-edit').addClass('btn-success');
+	$('#btn-edit').html('<i class="icon-ok"></i> Save Details');
+
+	// Set editing flag to true
+	$('#btn-edit').data('isEditing', true);
+
+	// Display cencel button
+	$('#btn-cancel').show();
+}
+
+/**
  * Function to enable in-place editing
  */
 function editAll() {
+	// Determine if we are in editing mode or not
 	var isEditing = $('#btn-edit').data('isEditing');
-	if(isEditing) {
-		// Change button colour and description
-		$('#btn-edit').removeClass('btn-success');
-		$('#btn-edit').addClass('btn-info');
-		$('#btn-edit').html('<i class="icon-edit"></i> Edit Details');
 
+	if(isEditing) {
 		// Save any changes made to the database
 		saveChanges();
 
-		// Set editing flag to false
-		$('#btn-edit').data('isEditing', false);
+		// Reset the edit options
+		resetEditOptions()
 	}
 	else {
-		// Change button colour and description
-		$('#btn-edit').removeClass('btn-info');
-		$('#btn-edit').addClass('btn-success');
-		$('#btn-edit').html('<i class="icon-ok"></i> Save Details');
+		// Enter editing details mode
+		enterEditMode();
 
 		// Activate input forms where applicable
 		$('#detail-pane').find('td').each(function() {
@@ -117,7 +161,7 @@ function editAll() {
 			var current = breed.data('data-store');
 
 			// Build the select list
-			var sel = $('<select class="chzn-select" type="text" id="inputbreed" name="inputbreed" data-placeholder="Breed">');
+			var sel = $('<select class="chzn-select" type="text" id="inputbreed" name="inputbreed" tab-index="-1" data-placeholder="Breed">');
 			jQuery.each(list, function(){
 				if (this.name == current) {
 					sel.append($('<option selected>').attr('value', this.name).text(this.name));
@@ -126,6 +170,7 @@ function editAll() {
 					sel.append($('<option>').attr('value', this.name).text(this.name));
 				}
 			});
+
 			// Place the select list in the appropriate row
 			breed.html(sel);
 
@@ -133,24 +178,13 @@ function editAll() {
 		    $("#inputbreed").chosen();
 
 		});
-
-		// Set editing flag to true
-		$('#btn-edit').data('isEditing', true);
 	}
-
-	// Toggle the visibility of the Cancel Button
-	$('#btn-cancel').toggle();
 }
 
 /**
  * Function to update the database with changes to the dog's details
  */
 function cancelEdit() {	
-	// Change button colour and description
-	$('#btn-edit').removeClass('btn-success');
-	$('#btn-edit').addClass('btn-info');
-	$('#btn-edit').html('<i class="icon-edit"></i> Edit Details');
-	
 	// Restore the values to the detail rows
 	$('#detail-pane').find('td').each(function() {
 		var row = $(this).attr("id");
@@ -159,15 +193,12 @@ function cancelEdit() {
 		next.html(val);
 	});
 
-	// Set editing flag to false
-	$('#btn-edit').data('isEditing', false);
-
-	// Toggle the visibility of the Cancel Button
-	$('#btn-cancel').hide();
+	// Reset the editing options (exit edit mode)
+	resetEditOptions();
 }
 
 /**
- * 
+ * Function to save the changes by the user to the database and update the details and lists to reflect the modifications
  */
 function saveChanges() {
 
@@ -185,9 +216,11 @@ function saveChanges() {
 		changes[row] = newval.val();
 	});
 
-	// post changes to updateDogs.php?
+	console.log("{C}", changes);
+
+	// Send the changes to the database
 	$.post("db/updateDog.php", {
-			'inputRegistration': changes['registration']
+			'inputRegistration': regID
 			,'inputName' : changes['name']
 			,'inputCallname' : changes['callname']
 			,'inputGender' : changes['gender']
@@ -215,12 +248,27 @@ function saveChanges() {
 	});
 
 	// Update the values of the list rows with updated info
-	var par = $('tr.list-item').find('td#registration:contains('+regID+')');
-	$(par).siblings().each(function() {
+	var item = $('tr.list-item').find('td#registration:contains('+regID+')');
+	$(item).siblings().each(function() {
 		var row = $(this).attr("id");
 		var val = changes[row];
 		$(this).data('data-store', val);
 		$(this).html(val);
 	});
 
+}
+
+/**
+ *
+ */
+function displayLitters(name) {
+	$.post("db/getLitters.php", {
+		'inputName' : name
+	})
+	.done(function(data) {
+		var list = jQuery.parseJSON(data);
+		console.log(list);
+	}).fail(function() {
+
+	});
 }
