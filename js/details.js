@@ -27,14 +27,6 @@ $(document).ready(function() {
 });
 
 /**
- * Function to switch the visibility between list and details
- */
-function toggleDetails() {
-	$("#list-pane").slideToggle();
-	$("#detail-pane").slideToggle();
-}
-
-/**
  * Give list items the click functionality (click on item, display details)
  * TODO: implement (hover) CSS for better usability
  */
@@ -49,29 +41,6 @@ $('.list-item').on("click", function() {
 
 	toggleDetails();	
 });
-
-/**
- * Function to retrieve the dog details from the given list item (table row)
- * and insert them into the corresponding row
- */
-function displayInformation(listItem) {
-	// Iterate through each td of the row
-	$(listItem).find('td').each(function() {
-		var id = $(this).attr("id");
-		var row = $('#'+id,'#detail-pane');
-
-		// Store the value with the row and display the contents
-		var val = $(this).data('data-store');
-		row.data('data-store',val);
-		row.html(val);		
-	});
-
-	// Add click-listeners / links to Sire and Dame fields
-	$('#dame', '#detail-pane').on("click", function(){
-		var dog = findDogFromList($(this).text());
-		displayInformation($(dog).parent());
-	});
-}
 
 /**
  * Function to allow user to remove a dog from the database
@@ -97,6 +66,53 @@ $('#btn-remove').on("click", function() {
 		});
 	});
 });
+
+/**
+ * Function to switch the visibility between list and details
+ */
+function toggleDetails() {
+	$("#list-pane").slideToggle();
+	$("#detail-pane").slideToggle();
+}
+
+/**
+ * Function to retrieve the dog details from the given list item (table row)
+ * and insert them into the corresponding row
+ */
+function displayInformation(listItem) {
+	// Iterate through each td of the row
+	$(listItem).find('td').each(function() {
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#detail-pane');
+
+		// Store the value with the row and display the contents
+		var val = $(this).data('data-store');
+		row.data('data-store',val);
+		row.html(val);		
+	});
+
+	// Add click-listeners / links to Sire and Dame fields
+	$('#dame', '#detail-pane').on("click", function(){
+		var dog = findDogFromList($(this).text());
+		displayInformation($(dog).parent());
+	});
+
+	// Display any litters if appropriate
+	displayLitters();
+}
+
+/**
+ * Function to display litters
+ */
+function displayLitters() {
+	// Ensure previous litter list is hidden
+	$('#litter-list', '#detail-pane').hide();
+
+	// If female, then display any litters she has
+	if ($('#gender', '#detail-pane').data('data-store') == 'Female') {
+		$('#litter-list', '#detail-pane').show();
+	}
+}
 
 /**
  * Function to retrieve a list item given the name parameter
@@ -239,9 +255,9 @@ function saveChanges() {
 			,'inputDateOfBirth' : changes['dateOfBirth']
 			,'inputBreeds' : changes['breed']
 		})
-		.done(function() { 
+		.done(function(results) { 
 			// If successful, reload the page (with message?)
-			console.log("Dog was updated successfully"); 
+			console.log(results); 
 		})
 		.fail(function() {
 			// If it fails...

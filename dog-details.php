@@ -58,13 +58,13 @@
 			</table>
 		</div>
 	</div>
-	<hr>
-	<div class="row-fluid">
+	<div class="row-fluid" id="litter-list" name="litter-list">
 		<div class="span12">
+			<hr>
 			<h3>Litters</h3>
 			<table class="table table-striped">
 				<tbody>
-					<tr><td>...</td></tr>
+					<tr><td>date &amp sire</td></tr>
 					<tr><td>...</td></tr>
 					<tr><td>...</td></tr>
 					<tr><td>...</td></tr>
@@ -72,8 +72,4 @@
 			</table>
 		</div>
 	</div>
-	<?php 
-		// TODO: only display if female and has any litters recorded!
-
-	?>
   </div>
