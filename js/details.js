@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 	// Activate the quicksearch plugin
 	$('input#search').quicksearch('table#dogTable tbody tr', {
-                'bind': 'focus keyup keydown'
+        'bind': 'focus keyup keydown'
 	});
 
 	// Allow reset button to clear search quickly

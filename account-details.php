@@ -6,7 +6,7 @@
         <tbody>
           <tr>
             <th>Kennel Name:</th>
-            <td id="kennelName" name="kennelName">Collier Co.</td>
+            <td id="kennelName" name="kennelName"></td>
           </tr>
           <tr>
             <th>Address:</th>
@@ -24,7 +24,7 @@
         <tbody>
           <tr>
             <th>Username:</th>
-            <td id="username" name="username">collier</td>
+            <td id="username" name="username"></td>
           </tr>
           <tr>
             <th>Email:</th>
@@ -44,6 +44,13 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="control-group">
+        <div class="controls">
+          <button class="btn btn-info" id="btn-edit" name="btn-edit"><i class="icon-edit"></i> Edit Account</button>
+          <button class="btn btn-warning" id="btn-cancel" name="btn-cancel" style="display:none;"><i class="icon-remove"></i> Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
 
