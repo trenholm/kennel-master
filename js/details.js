@@ -9,6 +9,21 @@ $(document).ready(function() {
 	// Default to not editing the dog details
 	$('#btn-edit').data('isEditing', false);
 	$('#btn-cancel').hide();
+
+	// Store the contents of each row in a data-store
+	$('.list-item').find('td').each(function() {
+		var val = $(this).html();
+		$(this).data('data-store', val);
+
+		// Hide extra cell contents
+		var id = $(this).attr("id");
+		if ( id == 'sire' || id == 'dame' || id == 'breed' ) {
+			$(this).html('');
+		}
+	});
+
+	// Activate the quicksearch plugin
+	$('input#search').quicksearch('table#dogTable tbody tr');
 });
 
 /**
@@ -20,7 +35,7 @@ function toggleDetails() {
 }
 
 /**
- * Give list items the click functionality
+ * Give list items the click functionality (click on item, display details)
  * TODO: implement (hover) CSS for better usability
  */
 $('.list-item').on("click", function() {
@@ -28,9 +43,9 @@ $('.list-item').on("click", function() {
 	displayInformation(this);
 
 	// store the registration id with the delete button 
-	var regID = $(this).find('#registration', this).html();
-	var next = $('#btn-remove','#detail-pane');
-	next.data("id",regID);
+	var id = $(this).find('#registration', this).html();
+	var row = $('#btn-remove','#detail-pane');
+	row.data("id", id);
 
 	toggleDetails();	
 });
@@ -42,13 +57,13 @@ $('.list-item').on("click", function() {
 function displayInformation(listItem) {
 	// Iterate through each td of the row
 	$(listItem).find('td').each(function() {
-		var row = $(this).attr("id");
-		var val = $(this).html();
-		var next = $('#'+row,'#detail-pane');
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#detail-pane');
 
 		// Store the value with the row and display the contents
-		next.data('data-store',val);
-		next.html(val);
+		var val = $(this).data('data-store');
+		row.data('data-store',val);
+		row.html(val);		
 	});
 
 	// Add click-listeners / links to Sire and Dame fields
@@ -62,14 +77,14 @@ function displayInformation(listItem) {
  * Function to allow user to remove a dog from the database
  */
 $('#btn-remove').on("click", function() {
-	var regID = $(this).data("id");
+	var id = $(this).data("id");
 	// Display the confirmation dialog box
 	$('#removeDogPanel').modal('show');
 
 	// Execute the removal of the dog
 	$('#removeBtn').on("click", function() {
 		$.post("db/removeDog.php", {
-			'inputRegistration': regID
+			'inputRegistration': id
 		})
 		.done(function() { 
 			// If successful, reload the page (with message?)
@@ -84,13 +99,10 @@ $('#btn-remove').on("click", function() {
 });
 
 /**
- *
+ * Function to retrieve a list item given the name parameter
  */
 function findDogFromList(name) {
-	// toggleDetails();
 	var item = $('tr.list-item').find('td#name:contains('+name+')');
-	// displayInformation($(item).parent());
-	// toggleDetails();
 	return item;
 }
 
@@ -146,11 +158,11 @@ function editAll() {
 
 		// Activate input forms where applicable
 		$('#detail-pane').find('td').each(function() {
-			var row = $(this).attr("id");
-			var next = $('#'+row,'#detail-pane').not('.dog-name').not('#registration');
-			var val = next.data('data-store');
-			var item = '<input type="text" id="input'+row+'" name="input'+row+'" placeholder="'+row+'" value="'+val+'">';
-			next.html(item);
+			var id = $(this).attr("id");
+			var row = $('#'+id,'#detail-pane').not('.dog-name').not('#registration');
+			var val = row.data('data-store');
+			var item = '<input type="text" id="input'+id+'" name="input'+id+'" placeholder="'+id+'" value="'+val+'">';
+			row.html(item);
 		});
 
 		// Provide the drop-down list of breeds
@@ -187,10 +199,10 @@ function editAll() {
 function cancelEdit() {	
 	// Restore the values to the detail rows
 	$('#detail-pane').find('td').each(function() {
-		var row = $(this).attr("id");
-		var next = $('#'+row,'#detail-pane');
-		var val = next.data('data-store');
-		next.html(val);
+		var id = $(this).attr("id");
+		var row = $('#'+id, '#detail-pane');
+		var val = row.data('data-store');
+		row.html(val);
 	});
 
 	// Reset the editing options (exit edit mode)
@@ -209,14 +221,12 @@ function saveChanges() {
 
 	// Capture the user's input changes
 	$('#detail-pane').find('td').each(function() {
-		var row = $(this).attr("id");
-		var next = $('#'+row,'#detail-pane').not('#registration');
-		var oldval = next.data('data-store');
-		var newval = $('#input'+row);
-		changes[row] = newval.val();
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#detail-pane').not('#registration');
+		var oldval = row.data('data-store');
+		var newval = $('#input'+id);
+		changes[id] = newval.val();
 	});
-
-	console.log("{C}", changes);
 
 	// Send the changes to the database
 	$.post("db/updateDog.php", {
@@ -240,18 +250,18 @@ function saveChanges() {
 
 	// Restore the values of the detail rows with updated info
 	$('#detail-pane').find('td').each(function() {
-		var row = $(this).attr("id");
-		var next = $('#'+row,'#detail-pane');
-		var val = changes[row];
-		next.data('data-store', val);
-		next.html(val);
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#detail-pane');
+		var val = changes[id];
+		row.data('data-store', val);
+		row.html(val);
 	});
 
 	// Update the values of the list rows with updated info
 	var item = $('tr.list-item').find('td#registration:contains('+regID+')');
 	$(item).siblings().each(function() {
-		var row = $(this).attr("id");
-		var val = changes[row];
+		var id = $(this).attr("id");
+		var val = changes[id];
 		$(this).data('data-store', val);
 		$(this).html(val);
 	});

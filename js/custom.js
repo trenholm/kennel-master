@@ -4,6 +4,7 @@
 $(document).ready(function() {
     // activate the chosen plugin
     $(".chzn-select").chosen();
+
     // activate the table sorter plug-in
     $(".tablesorter").tablesorter({
         theme : 'bootstrap',

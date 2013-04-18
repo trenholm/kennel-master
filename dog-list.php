@@ -15,6 +15,9 @@
           <th>Callname</th>
           <th>Gender</th>
           <th>Date of Birth</th>
+          <th style="display:none">Sire</th>
+          <th style="display:none">Dame</th>
+          <th style="display:none">Breed</th>
         </tr>
       </thead>
       <tbody>
