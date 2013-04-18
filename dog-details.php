@@ -1,4 +1,4 @@
-  <div class="row-fluid" id="detail-pane" name="detail-pane" style="display:none;">
+<div class="row-fluid" id="detail-pane" name="detail-pane" style="display:none;">
 	<div class="span12">
 		<button class="btn" onClick="resetEditOptions();toggleDetails();"><i class="icon-double-angle-left"></i> Back to List</button>
 		<button class="btn btn-info" onClick="editAll()" id="btn-edit" name="btn-edit"><i class="icon-edit"></i> Edit Details</button>
@@ -72,4 +72,4 @@
 			</table>
 		</div>
 	</div>
-  </div>
+</div>

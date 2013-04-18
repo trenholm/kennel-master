@@ -34,11 +34,12 @@ $('.list-item').on("click", function() {
 	// Retrieve the dog details from the list
 	displayInformation(this);
 
-	// store the registration id with the delete button 
+	// Store the registration id with the delete button 
 	var id = $(this).find('#registration', this).html();
 	var row = $('#btn-remove','#detail-pane');
 	row.data("id", id);
 
+	// Display the details panel
 	toggleDetails();	
 });
 
@@ -98,20 +99,9 @@ function displayInformation(listItem) {
 	});
 
 	// Display any litters if appropriate
-	displayLitters();
-}
-
-/**
- * Function to display litters
- */
-function displayLitters() {
-	// Ensure previous litter list is hidden
-	$('#litter-list', '#detail-pane').hide();
-
-	// If female, then display any litters she has
-	if ($('#gender', '#detail-pane').data('data-store') == 'Female') {
-		$('#litter-list', '#detail-pane').show();
-	}
+	var id = $('#registration', '#detail-pane').data('data-store');
+	var name = $('#name', '#detail-pane').data('data-store');
+	displayLitters(id, name);
 }
 
 /**
@@ -285,16 +275,28 @@ function saveChanges() {
 }
 
 /**
- *
+ * Function to display litters
  */
-function displayLitters(name) {
-	$.post("db/getLitters.php", {
-		'inputName' : name
-	})
-	.done(function(data) {
-		var list = jQuery.parseJSON(data);
-		console.log(list);
-	}).fail(function() {
+function displayLitters(id, name) {
+	// Ensure previous litter list is hidden
+	$('#litter-list', '#detail-pane').hide();
 
-	});
+	// If female, then display any litters she has
+	if ($('#gender', '#detail-pane').data('data-store') == 'Female') {
+
+		// Retreive the litters from the database
+		$.post("db/getLitters.php", {
+			'inputRegistration' : id
+			,'inputName' : name
+		})
+		.done(function(data) {
+			var list = jQuery.parseJSON(data);
+			console.log(list);
+		}).fail(function() {
+			console.log("No litters?");
+		});
+
+		// Make the litter list visible
+		$('#litter-list', '#detail-pane').show();
+	}
 }
