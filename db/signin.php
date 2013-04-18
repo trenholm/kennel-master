@@ -7,6 +7,7 @@ $password = $_REQUEST['inputPassword'];
 
 // Query for the database
 $query = array('username'=>$username, 'password'=>$password);
+$dbname = 'users';
 
 // to prevent script injections & attacks
 // $username = htmlspecialchars($username);
@@ -19,7 +20,7 @@ $m = new MongoClient();
 $db = $m->kennelmaster;
 
 // Select a collection
-$collection = $db->users;
+$collection = $db->$dbname;
 
 // Find everything in the collection (for the logged-in user)
 $cursor = $collection->find($query);

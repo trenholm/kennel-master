@@ -30,5 +30,6 @@
     </div>
     
     <?php include('requiredJS.php'); ?>
+    <script src="js/account.js"></script>
   </body>
 </html> 
