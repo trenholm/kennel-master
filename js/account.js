@@ -18,7 +18,20 @@ $(document).ready(function() {
 function displayInformation() {
 	// Provide the drop-down list of breeds
 		$.post("db/getAccount.php", function(data) { 
-			console.log('[Results]', jQuery.parseJSON(data));
+			var results = jQuery.parseJSON(data);
+			console.log('[Results]', results);
+
+			var breeds = $('<ul>').attr('class', 'inline');
+			$.each(results['breeds'], function() {
+				// var item = $('<span>').attr('class', 'label').text(this);
+				breeds.append($('<li>').html(this));
+			});
+			$('#breeds').data('data-store', results['breeds']);
+			$('#breeds').html(breeds);
+
+			console.log($('#breeds').data('data-store'));
+
+
 			// var breed = $('#inputBreeds', '#detail-pane');
 			// var list = jQuery.parseJSON(data);
 

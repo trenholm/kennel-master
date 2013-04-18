@@ -15,9 +15,6 @@
           <tr>
             <th>Breeds:</th>
             <td id="breeds" name="breeds">
-              <span class="label label-info">Akita</span>
-              <span class="label label-info">Bearded Collie</span>
-              <span class="label label-info">Border Collie</span>
             </td>
           </tr>
         </tbody>
