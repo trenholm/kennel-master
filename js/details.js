@@ -23,7 +23,15 @@ $(document).ready(function() {
 	});
 
 	// Activate the quicksearch plugin
-	$('input#search').quicksearch('table#dogTable tbody tr');
+	$('input#search').quicksearch('table#dogTable tbody tr', {
+                'bind': 'focus keyup keydown'
+	});
+
+	// Allow reset button to clear search quickly
+	$('#btn-reset').on('click', function() {
+        $("#search-bar").triggerHandler("focus");
+        $("input#search").val('').focus();
+	});
 });
 
 /**
