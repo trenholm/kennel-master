@@ -39,10 +39,7 @@ $document = array(
 // Will only update the single document that has the provided registration number
 $collection->update(array("registration" => $registration), $document);
 
-// Redirect back to the dog-list (dogs.php)
-header("Cache-Control: no-cache");
-header('Location: ../dogs.php', true, 302);
-
 // TODO: display success message?
+echo "Successfully updated details!";
 
 ?>

@@ -23,18 +23,20 @@ $db = $m->kennelmaster;
 $collection = $db->users;
 
 // Double-check that password was entered correctly??
+// TODO
 
-
-// TODO need to include the breeds!!
+// Set up the document to be inserted
 $document = array(
-	"username" => $username,
-	"password" => $password,
-	"email" => $email,
-	"creditcard" => $creditCard,
-	"kennelName" => $kennelName,
-	"address" => $address
+	"username" => $username
+	,"password" => $password
+	,"email" => $email
+	,"creditcard" => $creditCard
+	,"kennelName" => $kennelName
+	,"address" => $address
+	,"breeds" => $breeds
 );
 
+// Insert the document into the database
 $collection->insert($document);
 
 // if successfully registered, save username to session and redirect to the dashboard

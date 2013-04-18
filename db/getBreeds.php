@@ -17,7 +17,7 @@ $breeds = $cursor;
 // For retrieval using JSON/JQUERY
 $list = array();
 foreach ($breeds as $document) {
-    $list[] = array('name'=>$document['name']);
+    $list[] = array('_id'=>$document['_id'], 'name'=>$document['name']);
 }
 echo json_encode($list);
 
