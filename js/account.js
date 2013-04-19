@@ -11,11 +11,11 @@ $(document).ready(function() {
 	
 	$('#btn-edit').on('click', function() {
 		console.log("edit button clicked");
-		//editAccount();
+		editAccount();
 	});
 	$('#btn-cancel').on('click', function() {
 		console.log("cancel button clicked");
-		//resetAccount();
+		resetAccount();
 	});
 
 	// Display the account information
@@ -30,11 +30,13 @@ function displayInformation() {
 	// Retrieve the account information from the database
 	$.post("db/getAccount.php", function(data) { 
 		var results = jQuery.parseJSON(data);
-		console.log('[Results]', results);
 
 		// Display the username
 		$('#username').html(results['username']);
 		$('#username').data('data-store', results['username']);
+
+		// Store a copy of the old password
+		$('#password').data('data-store', results['password']);
 
 		// Display the kennel name
 		if (results['kennelName']) {
@@ -42,6 +44,7 @@ function displayInformation() {
 			$('#kennelName').html(results['kennelName']);			
 		}
 		else {
+			$('#kennelName').data('data-store', '');
 			$('#kennelName').html('<em>Not provided.</em>');
 		}
 
@@ -51,6 +54,7 @@ function displayInformation() {
 			$('#address').html(results['address']);			
 		}
 		else {
+			$('#address').data('data-store', '');
 			$('#address').html('<em>Not provided.</em>');
 		}
 
@@ -64,9 +68,9 @@ function displayInformation() {
 			$('#breeds').html(breeds);
 		} 
 		else {
+			$('#breeds').data('data-store', '');
 			$('#breeds').html('<em>None selected.</em>');
 		}
-
 
 		// Display the account email address
 		if (results['email']) {
@@ -74,31 +78,19 @@ function displayInformation() {
 			$('#email').html(results['email']);			
 		}
 		else {
+			$('#email').data('data-store', '');
 			$('#email').html('<em>Not provided.</em>');
 		}
 
-			// var breed = $('#inputBreeds', '#detail-pane');
-			// var list = jQuery.parseJSON(data);
-
-			// var current = breed.data('data-store');
-
-			// // Build the select list
-			// var sel = $('<select class="chzn-select" type="text" id="inputbreed" name="inputbreed" tab-index="-1" data-placeholder="Breed">');
-			// jQuery.each(list, function(){
-			// 	if (this.name == current) {
-			// 		sel.append($('<option selected>').attr('value', this.name).text(this.name));
-			// 	}
-			// 	else {
-			// 		sel.append($('<option>').attr('value', this.name).text(this.name));
-			// 	}
-			// });
-
-			// // Place the select list in the appropriate row
-			// breed.html(sel);
-
-			// // Ensure the Chosen plugin is active for this drop-down only
-		 //    $("#inputbreed").chosen();
-
+		// Display the credit card number (protected?)
+		if (results['creditcard']) {
+			$('#creditcard').data('data-store', results['creditcard']);
+			$('#creditcard').html(results['creditcard']);
+		}
+		else {
+			$('#creditcard').data('data-store', '');
+			$('#creditcard').html('<em>Not provided.</em>');
+		}
 	});
 }
 
@@ -131,7 +123,17 @@ function editAccount() {
 			var id = $(this).attr("id");
 			var row = $('td#'+id,'#account-section').not('#username');
 			var val = row.data('data-store');
-			var item = '<input type="text" id="input'+id+'" name="input'+id+'" placeholder="'+id+'" value="'+val+'">';
+			var item = $('<input>').attr('id', 'input'+id);
+			item.attr('name', 'input'+id);
+			item.attr('placeholder', id);
+			item.attr('value', val);
+			// Make sure passwords are hidden
+			if (id == 'password' || id == 'confirmpassword') {
+				item.attr('type', 'password');
+			}
+			else {
+				item.attr('type', 'text');
+			}
 			row.html(item);
 		});
 
@@ -143,10 +145,10 @@ function editAccount() {
 			var current = breed.data('data-store');
 
 			// Build the select list
-			var sel = $('<select class="chzn-select select-breeds" type="text" multiple="multiple" id="inputbreed[]" name="inputbreed[]" tab-index="-1" data-placeholder="Breed">');
-			jQuery.each(list, function(){
+			var sel = $('<select class="chzn-select select-breeds" type="text" multiple="multiple" id="inputbreeds[]" name="inputbreeds[]" tab-index="-1" data-placeholder="Breed">');
+			jQuery.each(list, function() {
 				// If one of the breeds already selected, show it as such
-				if ($.inArray(this.name, current)) {
+				if ($.inArray(this.name, current) != -1) {
 					sel.append($('<option selected>').attr('value', this.name).text(this.name));
 				}
 				else {
@@ -164,7 +166,7 @@ function editAccount() {
 }
 
 function resetAccount() {
-	// Restore the values of the rows
+	// Restore the values of the kennel section
 	$('#kennel-section').find('td').each(function() {
 		var id = $(this).attr("id");
 		var row = $('#'+id, '#kennel-section');
@@ -180,9 +182,10 @@ function resetAccount() {
 		}
 	});
 
+	// Restore the values of the account section
 	$('#account-section').find('td').each(function() {
 		var id = $(this).attr("id");
-		var row = $('#'+id, '#account-section');
+		var row = $('#'+id, '#account-section').not('#password');
 		var val = row.data('data-store');
 		row.html(val);
 	});
@@ -191,10 +194,83 @@ function resetAccount() {
 	resetEditOptions();
 }
 
-function saveAccount() {
+function saveChanges() {
+	// Saving changes
+	console.log("saving changes");
 
+	// Array to store changes
+	var changes = new Array();
+	var username = $('#username','#account-section').data('data-store');
+
+	// Capture the user's input changes
+	$('#kennel-section').find('td').each(function() {
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#kennel-section');
+		var oldval = row.data('data-store');
+
+		var newval = $('#input'+id);
+		if (id == 'breeds') {
+			newval = $("#inputbreeds\\[\\]");
+		}
+		changes[id] = newval.val();
+	});
+
+	$('#account-section').find('td').each(function() {
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#account-section').not('#username');
+		var oldval = row.data('data-store');
+		var newval = $('#input'+id);
+		changes[id] = newval.val();
+	});
+
+	console.log("changes",changes);
+
+	// Send the changes to the database
+	$.post("db/updateAccount.php", {
+		'inputUsername': username
+		,'inputKennelName' : changes['kennelName']
+		,'inputAddress' : changes['address']
+		,'inputBreeds' : changes['breeds']
+		,'inputEmail' : changes['email']
+		,'inputCreditCard' : changes['creditcard']
+		,'inputPassword' : changes['password']
+		,'inputConfirmPassword' : changes['confirmpassword']
+	})
+	.done(function(results) { 
+		// If successful, reload the page (with message?)
+		console.log(results); 
+	})
+	.fail(function() {
+		// If it fails...
+		console.log("Failed to update"); 
+	});
+
+	// Restore the values of the detail rows with updated info
+	$('#kennel-section').find('td').each(function() {
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#kennel-section');
+		var val = changes[id];
+		row.data('data-store', val);
+		row.html(val);
+
+		if (id == 'breeds') {
+			var breeds = $('<ul>').attr('class', 'inline');
+			$.each(val, function() {
+				breeds.append($('<li>').html(this+','));
+			});
+			row.html(breeds);
+		}
+	});
+
+		// Restore the values of the detail rows with updated info
+	$('#account-section').find('td').each(function() {
+		var id = $(this).attr("id");
+		var row = $('#'+id,'#account-section').not('#username');
+		var val = changes[id];
+		row.data('data-store', val);
+		row.html(val);
+	});
 }
-
 
 /**
  * Function to reset the editing options of the account details
@@ -210,6 +286,10 @@ function resetEditOptions() {
 
 	// Hide cancel button
 	$('#btn-cancel').hide();
+
+	// Hide the password fields
+	$('#passwordField', '#account-section').hide();
+	$('#confirmpasswordField', '#account-section').hide();
 }
 
 /**
@@ -226,4 +306,8 @@ function enterEditMode() {
 
 	// Display cencel button
 	$('#btn-cancel').show();
+
+	// Display the password fields
+	$('#passwordField', '#account-section').show();
+	$('#confirmpasswordField', '#account-section').show();
 }
