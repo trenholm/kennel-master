@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span6" id="info-section" name="info-section">
+    <div class="span10" id="info-section" name="info-section">
       <h3 id="kennel-info" name="kennel-info">Kennel Information</h3>
       <table class="table table-striped" id="kennel-section" name="kennel-section">
         <tbody>
@@ -44,7 +44,6 @@
           </tr>
         </tbody>
       </table>
-
       <div class="control-group">
         <div class="controls">
           <button class="btn btn-info" id="btn-edit" name="btn-edit"><i class="icon-edit"></i> Edit Account</button>

@@ -103,7 +103,11 @@ function displayInformation(listItem) {
 	// Add click-listeners / links to Sire and Dame fields
 	$('#dame', '#detail-pane').on("click", function(){
 		var dog = findDogFromList($(this).text());
-		displayInformation($(dog).parent());
+		// Only allow clicking link if NOT editing!
+		var isEditing = $('#btn-edit').data('isEditing');
+		if (!isEditing) {
+			displayInformation($(dog).parent());
+		}
 	});
 
 	// Display any litters if appropriate
@@ -175,7 +179,18 @@ function editAll() {
 			var id = $(this).attr("id");
 			var row = $('#'+id,'#detail-pane').not('.dog-name').not('#registration');
 			var val = row.data('data-store');
-			var item = '<input type="text" id="input'+id+'" name="input'+id+'" placeholder="'+id+'" value="'+val+'">';
+
+			var item = $('<input>');
+			item.attr('id', 'input'+id);
+			item.attr('name', 'input'+id);
+			item.attr('placeholder', id);
+			item.attr('value', val);
+			if (id == 'dateOfBirth') {
+				item.attr('type', 'date');
+			}
+			else {
+				item.attr('type', 'text');
+			}
 			row.html(item);
 		});
 
@@ -187,22 +202,29 @@ function editAll() {
 			var current = breed.data('data-store');
 
 			// Build the select list
-			var sel = $('<select class="chzn-select" type="text" id="inputbreed" name="inputbreed" tab-index="-1" data-placeholder="Breed">');
+			var select = $('<select>');
+			select.attr('class', 'chzn-select');
+			select.attr('id', 'inputbreed');
+			select.attr('name', 'inputbreed');
+			select.attr('tab-index', '-1');
+			select.attr('data-placeholder', 'Breed');
+
 			jQuery.each(list, function(){
 				if (this.name == current) {
-					sel.append($('<option selected>').attr('value', this.name).text(this.name));
+					select.append($('<option selected>').attr('value', this.name).text(this.name));
 				}
 				else {
-					sel.append($('<option>').attr('value', this.name).text(this.name));
+					select.append($('<option>').attr('value', this.name).text(this.name));
 				}
 			});
 
 			// Place the select list in the appropriate row
-			breed.html(sel);
+			breed.html(select);
 
 			// Ensure the Chosen plugin is active for this drop-down only
 		    $("#inputbreed").chosen();
 
+		    // Have dropdown for SIRE and DAME potentially???
 		});
 	}
 }
