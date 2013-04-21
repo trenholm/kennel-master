@@ -15,11 +15,11 @@
 
       <div class="row-fluid">
         <!--Quick Actions-->
-        <div class="span3">
+        <div class="span2">
           <?php include('quick-links.php'); ?>
         </div>
         <!--Content-->
-        <div class="span9">
+        <div class="span10">
           <span class="label">Alpha Centauri <i class="icon-plus"></i></span>
 
           <span class="label">Alpha Centauri <i class="icon-plus-sign"></i></span>

@@ -16,11 +16,11 @@
       <!--Dashboard-->
       <div class="row-fluid dashboard">
         <!--Quick Actions-->
-        <div class="span3">
+        <div class="span2">
         <?php include('quick-links.php'); ?>
         </div>
         <!--Upcoming Alerts-->
-        <div class="span9">
+        <div class="span10">
         <?php include('dashboard-alerts.php'); ?>
         </div>
       </div>
