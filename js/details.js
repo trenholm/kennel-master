@@ -32,6 +32,14 @@ $(document).ready(function() {
         $("#search-bar").triggerHandler("focus");
         $("input#search").val('').focus();
 	});
+
+	// While searching, be sure the list of dogs is displaying
+	$('#search').on('change', function() {
+		cancelEdit();
+		if ($("#detail-pane").is(':visible')) {
+			toggleDetails();
+		}
+	});
 });
 
 /**

@@ -1,6 +1,6 @@
 <div class="row-fluid" id="detail-pane" name="detail-pane" style="display:none;">
 	<div class="span12">
-		<button class="btn" onClick="resetEditOptions();toggleDetails();"><i class="icon-double-angle-left"></i> Back to List</button>
+		<button class="btn" onClick="cancelEdit();toggleDetails();"><i class="icon-double-angle-left"></i> Back to List</button>
 		<button class="btn btn-primary" onClick="" id="btn-view" name="btn-view"><i class="icon-sitemap"></i> View Pedigree</button>
 		<button class="btn btn-info" onClick="editAll()" id="btn-edit" name="btn-edit"><i class="icon-edit"></i> Edit Details</button>
 		<button class="btn btn-warning" onClick="cancelEdit()" id="btn-cancel" name="btn-cancel"><i class="icon-remove"></i> Cancel</button>
