@@ -223,6 +223,24 @@ function saveChanges() {
 		changes[id] = newval.val();
 	});
 
+	// only allow password to change if newpassword different from oldpassword AND confirmpassword same as newpassword
+	// if newpassword empty / blank, password should remain unchanged!
+
+	// Password change verification
+	var oldpass = $('#password').data('data-store');
+	var newpass = changes['password'];
+	var confirm = changes['confirmpassword'];
+
+	// If the new password is empty, DO NOT CHANGE THE PASSWORD
+	if (!newpass) {
+		changes['password'] = oldpass;
+	}
+	// If attempting to change password, ensure verification (client-side)
+	else if (newpass != confirm) {
+		// If did not confirm new password, DO NOT CHANGE THE PASSWORD
+		changes['password'] = oldpass;
+	}
+
 	console.log("changes",changes);
 
 	// Send the changes to the database

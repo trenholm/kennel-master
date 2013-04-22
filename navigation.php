@@ -2,7 +2,7 @@
   $page = basename($_SERVER['REQUEST_URI']);
 
   $pages = array(
-      'index.php' => '<i class="icon-dashboard"></i> Dashboard',
+      'index.php' => '<i class="icon-home"></i> Dashboard',
       'dogs.php' => '<i class="icon-list"></i> Dogs',
       'litters.php' => '<i class="icon-inbox"></i> Litters',
       'alerts.php' => '<i class="icon-bell-alt"></i> Alerts',
