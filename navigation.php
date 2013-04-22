@@ -2,10 +2,10 @@
   $page = basename($_SERVER['REQUEST_URI']);
 
   $pages = array(
-      'index.php' => 'Dashboard',
-      'dogs.php' => 'Dogs',
-      'litters.php' => 'Litters',
-      'alerts.php' => 'Alerts',
+      'index.php' => '<i class="icon-dashboard"></i> Dashboard',
+      'dogs.php' => '<i class="icon-list"></i> Dogs',
+      'litters.php' => '<i class="icon-inbox"></i> Litters',
+      'alerts.php' => '<i class="icon-bell-alt"></i> Alerts',
   );
 ?>
 <div class="navbar">
@@ -20,6 +20,7 @@
               echo '<a href="' . $filename . '">' . $title . '</a></li>';         
             }
           ?>
+          <!-- <li><a href="#"><i class="icon-sitemap"></i> Pedrigees</a></li> -->
         </ul>
         <ul class="nav pull-right">
           <?php if($page === 'account.php') { echo '<li class="active">'; } else { echo '<li>'; } ?>

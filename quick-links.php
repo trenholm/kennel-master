@@ -6,17 +6,15 @@
     </button>
   </div>
   <div class="quick">
-    <button class="btn btn-block btn-info quick-link" href="#addAlertPanel" data-toggle="modal">
-      <!-- <img src="img/add_plus.png" height="100px" width="100px" alt="add new alert"> -->
-      <img src="img/add_dog.png" height="100px" width="100px" alt="add new alert">
-      <br>add new alert
+    <button class="btn btn-block btn-primary quick-link" href="#addLitterPanel" data-toggle="modal">
+      <img src="img/add_litter.png" height="100px" width="100px" alt="add new litter">
+      <br>add new litter
     </button>
   </div>
   <div class="quick">
-    <button class="btn btn-block btn-primary quick-link" href="#addLitterPanel" data-toggle="modal">
-      <!-- <img src="img/add_litter.png" height="100px" width="100px" alt="add new litter"> -->
-      <img src="img/add_dog.png" height="100px" width="100px" alt="add new litter">
-      <br>add new litter
+    <button class="btn btn-block btn-info quick-link" href="#addAlertPanel" data-toggle="modal">
+      <img src="img/add_alert.png" height="100px" width="100px" alt="add new alert">
+      <br>add new alert
     </button>
   </div>
 <!--   <div class="quick">
