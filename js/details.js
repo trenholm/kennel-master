@@ -62,13 +62,13 @@ $('.list-item').on("click", function() {
 /**
  * Function to allow user to remove a dog from the database
  */
-$('#btn-remove').on("click", function() {
+$('#btn-remove').unbind('click').bind('click', function() {
 	var id = $(this).data("id");
 	// Display the confirmation dialog box
 	$('#removeDogPanel').modal('show');
 
 	// Execute the removal of the dog
-	$('#removeBtn').on("click", function() {
+	$('#removeBtn').unbind('click').bind('click', function() {
 		$.post("db/removeDog.php", {
 			'inputRegistration': id
 		})
@@ -108,13 +108,10 @@ function displayInformation(listItem) {
 		row.html(val);		
 	});
 
-	// Add click-listeners / links to Sire and Dame fields
-	$('#dame', '#detail-pane').on("click", function(){
-		var dog = findDogFromList($(this).text());
-		// Only allow clicking link if NOT editing!
-		var isEditing = $('#btn-edit').data('isEditing');
-		if (!isEditing) {
-			displayInformation($(dog).parent());
+	// Add click-listeners / links to Dame & Sire field
+	$('#dame, #sire', '#detail-pane').unbind('click').bind('click', function(){
+		if ($(this).text()) {
+			linkActionToDog($(this).text());
 		}
 	});
 
@@ -124,12 +121,17 @@ function displayInformation(listItem) {
 	displayLitters(id, name);
 }
 
+
 /**
- * Function to retrieve a list item given the name parameter
+ * Function to "link" an item/row to the provided dog and display that dog's details
  */
-function findDogFromList(name) {
-	var item = $('tr.list-item').find('td#name:contains('+name+')');
-	return item;
+function linkActionToDog(name) {
+	var dog = $('tr.list-item').find('td#name:contains('+name+')');
+	// Only allow clicking link if NOT editing!
+	var isEditing = $('#btn-edit').data('isEditing');
+	if (!isEditing) {
+		displayInformation($(dog).parent());
+	}
 }
 
 /**
@@ -284,7 +286,7 @@ function saveChanges() {
 			,'inputBreeds' : changes['breed']
 		})
 		.done(function(results) { 
-			// If successful, reload the page (with message?)
+			// If successful, reload the page (with results message?)
 			console.log(results); 
 		})
 		.fail(function() {
@@ -327,9 +329,33 @@ function displayLitters(id, name) {
 			'inputRegistration' : id
 			,'inputName' : name
 		})
-		.done(function(data) {
-			var list = jQuery.parseJSON(data);
-			console.log(list);
+		.done(function(results) {
+			var data = jQuery.parseJSON(results);
+			var table = $('table','#litter-list');
+			if(data) {
+				// Fill the litters table with the relevant information
+				$(data).each(function() {
+					var sire = this['sire'];
+					var birthdate = this['birthdate'];
+					var puppies = this['puppies'];
+					var row = $('<tr>');
+					row.append('<th>Date:</th><td>'+birthdate+'</td>');
+					row.append('<th>Sire:</th><td>'+sire+'</td>');
+					var list = $('<ul>').attr('class', 'inline');
+					$(puppies).each(function() {
+						var item = $('<li>').html(this+',');
+						// TODO: allow linking of puppy to rest of dog list??
+						list.append(item);
+					});
+					var pups = $('<tr>').append('<td>').attr('colspan',4).html(list);
+					table.append(row, pups);
+				});
+			}
+			else {
+				// Erase any previous litters
+				table.html('');
+				table.append('<tr><td><em>No litters found.</em></td></tr>');
+			}
 		}).fail(function() {
 			console.log("No litters?");
 		});

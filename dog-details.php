@@ -65,10 +65,6 @@
 			<h3>Litters</h3>
 			<table class="table table-striped">
 				<tbody>
-					<tr><td>date &amp sire</td></tr>
-					<tr><td>...</td></tr>
-					<tr><td>...</td></tr>
-					<tr><td>...</td></tr>
 				</tbody>
 			</table>
 		</div>
