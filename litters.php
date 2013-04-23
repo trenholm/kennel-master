@@ -21,7 +21,7 @@
         </div>
         <!--Upcoming Alerts-->
         <div class="span10">
-        <?php include('dashboard-alerts.php'); ?>
+        <?php include('litter-list.php'); ?>
         </div>
       </div>
 
@@ -30,5 +30,6 @@
     </div>
     
     <?php include('requiredJS.php'); ?>
+    <script src="js/litters.js"></script>
   </body>
 </html> 
