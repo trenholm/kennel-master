@@ -41,8 +41,7 @@ if ( isset($_SESSION['error']) ) {
     <div class="container-fluid">
 
       <!--Welcome Banner-->
-      <div class="row-fluid">
-        <h1 style="background:#C3FDB8;">Large banner??</h1>
+      <div class="row-fluid" id="welcome-banner" name="welcome-banner">
       </div>
 
       <!--Notification Message-->

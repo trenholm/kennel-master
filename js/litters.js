@@ -31,6 +31,13 @@ $(document).ready(function() {
 
 	// Display the litters
 	displayLitters();
+
+    // Activate the table sorter plug-in
+    $("#litterTable").tablesorter({
+        theme : 'bootstrap',
+        headerTemplate : '{content} {icon}',
+        widgets : ['zebra','columns', 'uitheme']
+    });
 });
 
 /**
@@ -45,24 +52,27 @@ function displayLitters() {
 		var table = $('table','#litter-list');
 		if(data) {
 			$(data).each(function() {
-				// Fill the litters table with the relevant information
 				var dame = this['name'];
+				var breed = this['breed'];
+
+				// Fill the litters table with the relevant information
 				$(this['litters']).each(function() {
 					var sire = this['sire'];
 					var birthdate = this['birthdate'];
 					var puppies = this['puppies'];
 					var row = $('<tr>');
-					row.append('<th>Date:</th><td>'+birthdate+'</td>');
-					row.append('<th>Dame:</th><td>'+dame+'</td>');
-					row.append('<th>Sire:</th><td>'+sire+'</td>');
+					row.append('<td>'+dame+'</td>');
+					row.append('<td>'+birthdate+'</td>');
+					row.append('<td>'+breed+'</td>');
+					row.append('<td>'+sire+'</td>');
 					var list = $('<ul>').attr('class', 'inline');
 					$(puppies).each(function() {
 						var item = $('<li>').html(this+',');
 						// TODO: allow linking of puppy to rest of dog list??
 						list.append(item);
 					});
-					var pups = $('<tr>').append('<td>').attr('colspan',6).html(list);
-					table.append(row, pups);
+					row.append($('<td>').attr('colspan',6).html(list));
+					table.append(row);
 				});
 			});
 		}

@@ -18,19 +18,16 @@ $collection = $db->$dbname;
 $cursor = $collection->find(array("gender" => "Female"))->sort(array("name" => 1));
 
 // Store the results in an array (in session!)
-$litters = $cursor;
+$dogs = $cursor;
 
-// Store the results in an array (in session!)
-$dog = $cursor;
-
-$list = array();
 // For retrieval using JSON/JQUERY
-foreach ($dog as $document) {
+$list = array();
+foreach ($dogs as $document) {
 	$list[] = $document;
 }
 echo json_encode($list);
 
 // Set the cursor back to the top of the list
-$dog->rewind();
+$dogs->rewind();
 
 ?>

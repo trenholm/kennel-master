@@ -40,6 +40,10 @@ $(document).ready(function() {
 			toggleDetails();
 		}
 	});
+
+	// Add the litter section title
+	$('#litter-list', '#detail-pane').prepend('<h3>Litters</h3>');
+
 });
 
 /**
@@ -325,30 +329,35 @@ function displayLitters(id, name) {
 	if ($('#gender', '#detail-pane').data('data-store') == 'Female') {
 
 		// Retreive the litters from the database
-		$.post("db/getLitters.php", {
-			'inputRegistration' : id
-			,'inputName' : name
-		})
+		$.post("db/getAllLitters.php")
 		.done(function(results) {
 			var data = jQuery.parseJSON(results);
+			console.log(data);
 			var table = $('table','#litter-list');
 			if(data) {
-				// Fill the litters table with the relevant information
 				$(data).each(function() {
-					var sire = this['sire'];
-					var birthdate = this['birthdate'];
-					var puppies = this['puppies'];
-					var row = $('<tr>');
-					row.append('<th>Date:</th><td>'+birthdate+'</td>');
-					row.append('<th>Sire:</th><td>'+sire+'</td>');
-					var list = $('<ul>').attr('class', 'inline');
-					$(puppies).each(function() {
-						var item = $('<li>').html(this+',');
-						// TODO: allow linking of puppy to rest of dog list??
-						list.append(item);
+					var dame = this['name'];
+					var breed = this['breed'];
+
+					// Fill the litters table with the relevant information
+					$(this['litters']).each(function() {
+						var sire = this['sire'];
+						var birthdate = this['birthdate'];
+						var puppies = this['puppies'];
+						var row = $('<tr>');
+						row.append('<td>'+dame+'</td>');
+						row.append('<td>'+birthdate+'</td>');
+						row.append('<td>'+breed+'</td>');
+						row.append('<td>'+sire+'</td>');
+						var list = $('<ul>').attr('class', 'inline');
+						$(puppies).each(function() {
+							var item = $('<li>').html(this+',');
+							// TODO: allow linking of puppy to rest of dog list??
+							list.append(item);
+						});
+						row.append($('<td>').attr('colspan',6).html(list));
+						table.append(row);
 					});
-					var pups = $('<tr>').append('<td>').attr('colspan',4).html(list);
-					table.append(row, pups);
 				});
 			}
 			else {
