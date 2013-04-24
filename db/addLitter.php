@@ -9,6 +9,9 @@ $birthdate = $_REQUEST['inputBirthdate'];
 $breed = $_REQUEST['inputBreeds'];
 $puppies = $_REQUEST['inputPuppies'];
 
+// puppies should be an array each dog's regNum, name, gender, ?callname
+// sire, dame, birthdate, breed all provided from above
+
 // SAMPLE MONGODB STATEMENT
 // db.drryan_dogs.update({"registration":"95"},{$push:{"litters": {$each: [{"sire":"Father Figure", "birthdate":"2008-12-25", "puppies":["Buster Trenholm", "Deputy Drover"]},{"sire":"Hank the Cowdog", "birthdate":"2010-09-21", "puppies":["Alpha Primus", "Mother Dearest"]}]}}})
 
@@ -25,7 +28,11 @@ $db = $m->kennelmaster;
 // Select a collection
 $collection = $db->$dbname;
 
-// Insert the litter meta-info into the collection
+// For each of the puppies
+// insert new puppy into the DB
+// Store puppy regName (unchanging) in an array
+
+// Then insert the litter meta-info into the dog's litter sub-document
 $document = array( 
 	"birthdate" => $birthdate
 	,"sire" => $sire

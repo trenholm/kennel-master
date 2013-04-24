@@ -2,7 +2,9 @@
  * Functions that must be initialized when the page loads
  */
 $(document).ready(function() {
-    // activate the chosen plugin
+    // Activate the chosen plugin where required
+    $('.chzn-select', '#addLitterPanel').chosen();
+    $('.chzn-select', '#addDogPanel').chosen();
     $(".chzn-select").chosen();
 
     // activate the table sorter plug-in
@@ -10,6 +12,15 @@ $(document).ready(function() {
         theme : 'bootstrap',
         headerTemplate : '{content} {icon}',
         widgets : ['zebra','columns', 'uitheme']
+    });
+
+
+    // Disable press enter to submit for in-line search forms
+    $('.form-search').keypress(function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            return false;
+        }
     });
 });
 

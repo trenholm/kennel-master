@@ -42,12 +42,19 @@
           <input type="date" id="inputBirthdate" name="inputBirthdate" placeholder="Date of Birth">
         </div>
       </div>
-      <div class="control-group" id="inputPuppiesField" name="inputPuppiesField">
-        <label class="control-label" for="inputPuppies">Puppies</label>
-        <div class="controls">
-          <input type="text" id="inputPuppies" name="inputPuppies" placeholder="Sire">
-        </div>
-      </div>
+      <hr>
+      <h3>Add Puppies <button class="btn inline btn-success" type="button"><i class="icon-plus"></i> add new</button></h3>
+      <form class="form-inline">
+        <label class="registration">
+          Registration: <input type="text">
+        </label>
+        <label class="name">
+          Name: <input type="text">
+        </label>
+        <label class="gender">
+          Gender: <input type="text">
+        </label>
+      </form>
     </form>
   </div>
   <div class="modal-footer control-group">
