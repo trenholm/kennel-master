@@ -6,8 +6,9 @@
     margin-bottom: 10px;
 }
 
-table.tablesorter thead tr .header {
+table.tablesorter .tablesorter-header-inner {
 	cursor: pointer;
+	cursor: hand;
 }
 
 .btn-edit {
@@ -17,4 +18,9 @@ table.tablesorter thead tr .header {
 .error {
 	font-style: italic;
 	color: #FF0000;
+}
+
+.list-item {
+	cursor: pointer;
+	cursor: hand;
 }

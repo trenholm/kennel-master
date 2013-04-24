@@ -329,7 +329,11 @@ function displayLitters(id, name) {
 	if ($('#gender', '#detail-pane').data('data-store') == 'Female') {
 
 		// Retreive the litters from the database
-		$.post("db/getAllLitters.php")
+		$.post("db/getLitters.php", {
+			"inputRegistration" : id
+			,"inputName" : name
+			,"numberOfDogs" : 1
+		})
 		.done(function(results) {
 			var data = jQuery.parseJSON(results);
 			console.log(data);
@@ -341,35 +345,39 @@ function displayLitters(id, name) {
 				var head = $('<tr>');
 				head.append('<th>Dame</th>');
 				head.append('<th>Birthdate</th>');
-				head.append('<th>Sire</th>');
 				head.append('<th>Breed</th>');
+				head.append('<th>Sire</th>');
 				head.append('<th>Puppies</th>');
-      			table.append($('<thead>').append(head));
+      			table.append($('<thead>').attr('class', 'header').append(head));
 
       			// For each row of data
 				$(data).each(function() {
 					var dame = this['name'];
 					var breed = this['breed'];
 
-					// Fill the litters table with the relevant information
-					$(this['litters']).each(function() {
-						var sire = this['sire'];
-						var birthdate = this['birthdate'];
-						var puppies = this['puppies'];
-						var row = $('<tr>');
-						row.append('<td>'+dame+'</td>');
-						row.append('<td>'+birthdate+'</td>');
-						row.append('<td>'+breed+'</td>');
-						row.append('<td>'+sire+'</td>');
-						var list = $('<ul>').attr('class', 'inline');
-						$(puppies).each(function() {
-							var item = $('<li>').html(this+',');
-							// TODO: allow linking of puppy to rest of dog list??
-							list.append(item);
+					if (this['litters']) {
+						// Fill the litters table with the relevant information
+						$(this['litters']).each(function() {
+							var sire = this['sire'];
+							var birthdate = this['birthdate'];
+							var puppies = this['puppies'];
+							var row = $('<tr>');
+							row.append('<td>'+dame+'</td>');
+							row.append('<td>'+birthdate+'</td>');
+							row.append('<td>'+breed+'</td>');
+							row.append('<td>'+sire+'</td>');
+							var list = $('<td>');
+							$(puppies).each(function() {
+								list.append(this+', ');
+							});
+							row.append(list);
+							table.append(row);
 						});
-						row.append($('<td>').attr('colspan',6).html(list));
-						table.append($('<tbody>').append(row));
-					});
+					}
+					else {
+						$('.header').remove();
+						table.append('<tr><td><em>No litters found.</em></td></tr>');
+					}
 				});
 			}
 			else {

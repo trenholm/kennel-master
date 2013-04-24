@@ -4,8 +4,8 @@
         <tr>
           <th>Dame</th>
           <th>Birthdate</th>
-          <th>Sire</th>
           <th>Breed</th>
+          <th>Sire</th>
           <th>Puppies</th>
         </tr>
       </thead>
