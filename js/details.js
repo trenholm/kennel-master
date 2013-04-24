@@ -334,7 +334,19 @@ function displayLitters(id, name) {
 			var data = jQuery.parseJSON(results);
 			console.log(data);
 			var table = $('table','#litter-list');
+			// Erase any previous litters
+			table.html('');
 			if(data) {
+				// Add the table headers
+				var head = $('<tr>');
+				head.append('<th>Dame</th>');
+				head.append('<th>Birthdate</th>');
+				head.append('<th>Sire</th>');
+				head.append('<th>Breed</th>');
+				head.append('<th>Puppies</th>');
+      			table.append($('<thead>').append(head));
+
+      			// For each row of data
 				$(data).each(function() {
 					var dame = this['name'];
 					var breed = this['breed'];
@@ -356,13 +368,11 @@ function displayLitters(id, name) {
 							list.append(item);
 						});
 						row.append($('<td>').attr('colspan',6).html(list));
-						table.append(row);
+						table.append($('<tbody>').append(row));
 					});
 				});
 			}
 			else {
-				// Erase any previous litters
-				table.html('');
 				table.append('<tr><td><em>No litters found.</em></td></tr>');
 			}
 		}).fail(function() {
